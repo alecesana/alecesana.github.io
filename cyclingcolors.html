@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+
+<head>
+<title>Ale Cesana</title>
+<meta name = "description" content = "text to add">
+<meta name ="viewport" content="initial-scale=1.0,width=device-width">
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<script src="https://use.fontawesome.com/09878ab60a.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src=".\js\main.js"></script>
+
+<link rel="stylesheet" href="css\main.css">
+</head>
+
+<body>  
+<header class="main-header" >     
+    <div class = "main-title"><a href = "index.html" alt = "home">ALe</a></div>
+  <nav class="navbar">
+      <span class="navbar-toggle" id="js-navbar-toggle">
+          <i class="fas fa-bars"></i>
+      </span>  
+      <ul class= "main-nav" id = "js-menu">    
+        <li><a href = "index.html" alt = "home">home</a></li>
+        <li><a href = "#about" alt = "about" class = "scroll">about</a></li>
+        <li><a href="#contact" class = "scroll">contact</a></li>
+        
+      </ul>
+  </nav>
+  
+ <!--<button id="buttonMenu"></button>-->
+ 
+</header>
+<div class  = "container">
+
+  <section id="CyclingColors" class="content-section container">  
+          <h2 class = "section-header">Multi Target Cycling Colours with Openframeworks</h2>          
+    <p class = "sectionparagraph">I wrote this code to share the principles behind the smooth colour changing functions used in my interactive work.
+        </p>
+
+            <div class= "iframe-container-169">
+              <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/MnovAtLpakw?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    
+              </div>
+              <p class = "sectionparagraph">
+                The code in the repository is a non general version of the code written for the Australian Open 2017 interactive installation, restricting the blending across three colours. 
+                The main source files to look at are <a href = "https://github.com/alecesana/Multiple-target-Cycling-Colours-Openframeworks/blob/master/src/MultiTargetColourCycling.h">MultiTargetColourCycling.h</a> and <a href = "https://github.com/alecesana/Multiple-target-Cycling-Colours-Openframeworks/blob/master/src/MultiTargetColourCycling.cpp">MultiTargetColourCycling.cpp</a>. 
+                <br><br>
+                The core of the colour swap happens in the update() section of MultiTargetColourCycling.cpp, using <a href = "https://openframeworks.cc/documentation/types/ofColor/#show_lerp">lerp()</a>, <a href = "https://en.cppreference.com/w/c/numeric/math/fmod">fmodf()</a>, <a href = "https://openframeworks.cc/documentation/utils/ofUtils/#show_ofGetElapsedTimef"> OfGetElapsedTimef()</a> to blend the three chosen colors 
+                between sub-groups of three objects in a timely manner, and can be virtually applied to any number of objects . 
+            <br><br>
+           Applying some simple object oriented programming iteration (also shared in the repository) the resulting output will be:
+  
+                  </p>
+
+            <div class ="iframe-container-169">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/87YJURlgRxY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            
+          
+        <br>
+                
+        <p class = "sectionparagraph">
+            The resulting  visual effect is the color shades "moving" across groups
+            of objects .
+            Observing a single circle object will reveal the cycling nature of the 
+            effect in blending the colours in a distributed way. 
+            The effect can be also noticed choosing one shade of the colour currently on screen
+            and observing it blending along to the other objects.
+            <br><br>
+            If your goal is to iterate between more than three colours or affect the timing of the swap
+            you'll need to modify the function (shared under MIT Licence).<br><br>
+                  
+            Adding a third dimension, iterating across different objects, using <a href = "https://openframeworks.cc/documentation/3d/ofNode/" >ofNode</a>,some rotations and adding sound reactivity could result in something more interesting, like these 3D mandala shapes 
+            </p>
+
+            <div class = "iframe-container-169">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/TfCKxHwxRm0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+
+
+        <p class = "sectionparagraph">
+            
+            
+            In more general terms, these concepts can be used to apply properties comprised of multiple(>2) steps to groups of objects 
+            in a cycling and distributed way.
+            </br></br>
+            Go to the <a href = "https://github.com/alecesana/Multiple-target-Cycling-Colours-Openframeworks/tree/master/src">full source code</a>
+            </br></br>
+            Go to <a href = "https://github.com/alecesana"> more Github repositories</a>              
+       </p>                
+        
+            
+    
+    </section>
+
+    <section id="about" class="content-section container">
+        <h2 class= "section-header" >About</h2>  
+        <p class= "sectionparagraph">
+            I started coding in C++ while graduating in Materials Science, an interdisciplinary field of study involving Chemistry, Physics and Mathematics 
+            applied to the development of new materials (link to <a href = "https://en.wikipedia.org/wiki/Materials_science">
+              Wikipedia Materials Science Page</a> , if you'd like to know more about it). I have been working in sales of electronics systems for the past three years.
+              In my spare time I have been designing, assembling and programming electronics systems as a private contractor.
+              Along the way I picked up more languages and frameworks to suit different needs, such as
+       
+          
+        <ul class = "section-list">
+        
+        <li>more C++ (Openframeworks, OpenCV)</li>
+        <li>OpenGL and WebGL</li>
+        <li>Java (Processing, LXstudio)</li>
+        <li>Python (Raspberry Pi)</li>
+        <li>Mql4</li>
+        <li>Scio Molecular Spectroscopy Dev Kit</li>
+        <li>Brand specific programmable  logic controller languages (Arduino, Splat controls, Allen Bradley)</li> 
+        <li>Html, CSS,  and JavaScript (Vanilla and JQuery, currently studying React and other Front-End frameworks)</li> 
+        </ul>
+       
+        Some of my certifications and profiles
+         <ul class = "links-list">
+        <li><a href = "https://www.freecodecamp.org/certification/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671/responsive-web-design">Responsive Web Design certification</a></li>   
+        <li><a href = "https://www.freecodecamp.org/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671">My Freecodecamp profile</a><li></li>
+        <li><a href = "https://codepen.io/ale5/" >My Codepen profile</a></li>
+         </ul>
+      </section>
+
+    <section id = "Contact" class="content-section container">
+        <p class= "sectionparagraph">
+                
+        Would you like me to develop something for you or your business?<br>
+    
+        <div class = "b">  
+        <a href="mailto:cesaless@gmail.com"><i class="fas fa-envelope p-icon"></i>Email</a>
+        <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x p-icon"></i>Instagram</a>
+        </div>
+
+        </p>
+    </section>
+
+    
+</div>
+    
+<footer class ="main-footer">
+    <!--<h3 class = "main-title-small">Ale</h3>-->
+    
+    <div class = "c">
+    <i class="far fa-copyright"></i> Alessandro Cesana 2018 <a  href="mailto:cesaless@gmail.com"><i class="fas fa-envelope "> </i></a>
+    
+    <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x"></i></a>
+    </div>
+    
+    </footer>  
+    
+    </body>
+    </html>
+    
+
+ 
