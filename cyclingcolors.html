@@ -17,23 +17,28 @@
 </head>
 
 <body>  
-<header class="main-header" >     
-    <div class = "main-title"><a href = "index.html" alt = "home">ALe</a></div>
-  <nav class="navbar">
-      <span class="navbar-toggle" id="js-navbar-toggle">
-          <i class="fas fa-bars"></i>
-      </span>  
-      <ul class= "main-nav" id = "js-menu">    
-        <li><a href = "index.html" alt = "home">home</a></li>
-        <li><a href = "#about" alt = "about" class = "scroll">about</a></li>
-        <li><a href="#contact" class = "scroll">contact</a></li>
-        
-      </ul>
-  </nav>
-  
- <!--<button id="buttonMenu"></button>-->
- 
-</header>
+
+
+        <header class="main-header" >     
+                <div class = "main-title"><a href = "index.html" alt = "home">ALe</a></div>
+                <div class="inLineHeaderContainer"> 
+                   <div id = "navElementsContainer">      
+                     <div class="navbar-toggle" id="navbar-icon">
+                         <i class="fas fa-bars IconColor"></i>
+                     </div> 
+                   <div id = "navContainer">            
+                        <ul class= "main-nav" >    
+                                <li><a href="interactivityPage.html" >interactivity</a></li>
+                                <li><a href="index.html#Automation" >automation</a></li>
+                                <li><a href="threejs1.html">web</a></li>
+                                <li><a href = "cyclingcolors.html">code</a></li> 
+                                <li><a href = "index.html#about" alt = "about" >about</a></li>
+                                <li><a href="index.html#Contact" >contact</a></li> 
+                              </ul>
+                   </div>    
+                 </div> 
+                </div>
+             </header>
 <div class  = "container">
 
   <section id="CyclingColors" class="content-section container">  
@@ -46,7 +51,7 @@
     
               </div>
               <p class = "sectionparagraph">
-                The code in the repository is a non general version of the code written for the Australian Open 2017 interactive installation, restricting the blending across three colours. 
+                The code in the repository is a non general version of the colour changing function written for the Australian Open 2017 interactive installation, restricting the blending across three colours. 
                 The main source files to look at are <a href = "https://github.com/alecesana/Multiple-target-Cycling-Colours-Openframeworks/blob/master/src/MultiTargetColourCycling.h">MultiTargetColourCycling.h</a> and <a href = "https://github.com/alecesana/Multiple-target-Cycling-Colours-Openframeworks/blob/master/src/MultiTargetColourCycling.cpp">MultiTargetColourCycling.cpp</a>. 
                 <br><br>
                 The core of the colour swap happens in the update() section of MultiTargetColourCycling.cpp, using <a href = "https://openframeworks.cc/documentation/types/ofColor/#show_lerp">lerp()</a>, <a href = "https://en.cppreference.com/w/c/numeric/math/fmod">fmodf()</a>, <a href = "https://openframeworks.cc/documentation/utils/ofUtils/#show_ofGetElapsedTimef"> OfGetElapsedTimef()</a> to blend the three chosen colors 
@@ -132,11 +137,12 @@
                 
         Would you like me to develop something for you or your business?<br>
     
-        <div class = "b">  
-        <a href="mailto:cesaless@gmail.com"><i class="fas fa-envelope p-icon"></i>Email</a>
-        <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x p-icon"></i>Instagram</a>
-        </div>
+     
+        <div class = "b">
 
+            <a href="mailto:cesaless@gmail.com"><i class="fas fa-envelope p-icon"></i>Email</a>
+            <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x p-icon"></i>Instagram</a>
+        </div>
         </p>
     </section>
 
