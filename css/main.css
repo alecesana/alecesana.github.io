@@ -97,7 +97,7 @@ body{
     }
 
 .active {
-    height:200px;   /*make it number of elements in li*/  
+    height:200px;   /*todo: make it number of elements in  using js*/  
     }
    
 .main-nav a{
@@ -450,6 +450,7 @@ canvas{
     .main-nav a {
         color:white;
         margin-right:3vw;
+        position:sticky;
      
     }
    
