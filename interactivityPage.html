@@ -17,29 +17,24 @@
 </head>
 
 <body>  
-
-
 <header class="main-header" >     
     <div class = "main-title"><a href = "index.html" alt = "home">ALe</a></div>
-    <div class="inLineHeaderContainer"> 
-       <div id = "navElementsContainer">      
-         <div class="navbar-toggle" id="navbar-icon">
-             <i class="fas fa-bars IconColor"></i>
-         </div> 
-       <div id = "navContainer">            
-          <ul class= "main-nav" >    
-              <li><a href="interactivityPage.html" >interactivity</a></li>
-              <li><a href="index.html#Automation" >automation</a></li>
-              <li><a href="threejs1.html">web</a></li>
-              <li><a href = "cyclingcolors.html">code</a></li> 
-              <li><a href = "index.html#about" alt = "about" >about</a></li>
-              <li><a href="index.html#Contact" >contact</a></li> 
-            </ul>
-       </div>    
-     </div> 
-    </div>
- </header>
+  <nav class="navbar">
+      <span class="navbar-toggle" id="js-navbar-toggle">
+          <i class="fas fa-bars"></i>
+      </span>  
 
+      <ul class= "main-nav" id = "js-menu">    
+        <li><a href = "index.html" alt = "home">home</a></li>
+        <li><a href = "#about" alt = "about" class = "scroll">about</a></li>
+        <li><a href="#contact" class = "scroll">contact</a></li>
+        
+      </ul>
+  </nav>
+  
+ <!--<button id="buttonMenu"></button>-->
+ 
+</header>
 <div class  = "container">
 
   <section id="Interactivity" class="content-section container">

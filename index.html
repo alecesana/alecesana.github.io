@@ -1,47 +1,69 @@
 <!DOCTYPE html>
 <html lang = "en">
+
+
 <head>
 <title>Ale Cesana</title>
-<meta name = "description" content = "Alessandro Cesana, Web and Software Developer.">
+<meta name = "description" content = "Ale Cesana, Web and Software Developer">
 <meta name ="viewport" content="initial-scale=1.0,width=device-width">
 <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
+<script src="https://use.fontawesome.com/09878ab60a.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src=".\js\main.js"></script>
+<script src="./js/three.min.js"></script>
+<script src="./js/datguimin.js"></script>
+<script src="./js/stats.js-master/build/stats.min.js"></script>
+<script src="./js/TrackballControls.js"></script>   
+<script src="./js/WebGL.js"></script>   
 
 <link rel="stylesheet" href="css\main.css">
 </head>
 
 <body>  
-  <header class="main-header" >     
-   <div class = "main-title">ALe</div>
-   <div class="inLineHeaderContainer"> 
-      <div id = "navElementsContainer">      
-        <div class="navbar-toggle" id="navbar-icon">
-            <i class="fas fa-bars IconColor"></i>
-        </div> 
-      <div id = "navContainer">            
-        <ul class= "main-nav" >    
-          <li><a href="#Interactivity" class = "scroll">interactivity</a></li>
-          <li><a href="#Automation" class = "scroll">automation</a></li>
-          <li><a href="#WebDevelopment" class = "scroll">web</a></li>
-          <li><a href = "cyclingcolors.html">code</a></li> 
-          <li><a href = "#about" alt = "about" class = "scroll">about</a></li>
-          <li><a href="#Contact" class = "scroll">contact</a></li> 
-        </ul>
-      </div>    
-    </div> 
-   </div>
-</header>
+<header class="main-header" >     
+    <div class = "main-title">ALe</div>
+  <nav class="navbar">
+      <span class="navbar-toggle" id="js-navbar-toggle">
+          <i class="fas fa-bars IconColor"></i>
+      </span>  
 
+      <ul class= "main-nav" id = "js-menu">    
+        <li><a href="#Interactivity" class = "scroll">interactivity</a></li>
+        <li><a href="#Automation" class = "scroll">automation</a></li>
+        <li><a href="#WebDevelopment" class = "scroll">web </a></li>
+        <li><a href = "cyclingcolors.html">code</a></li> 
+        <li><a href = "#about" alt = "about" class = "scroll">about</a></li>
+        <li><a href="#Contact" class = "scroll">contact</a></li> 
+      </ul>
+  </nav>
+  
+
+ 
+</header>
 <div class  = "container">
     <section id= "WebDevelopment" class="content-section container">
         <h2 class = "section-header">Web Development</h2>        
         <p class = "sectionparagraph"> 
-          I develop websites and draw with code. Have a look at <a href = "threejs1.html" >this symmetry experiment</a>. You can control speed of rotation, rotate and increase distances between the coloured  points.  
-         </p>
-         <a href = "threejs1.html" alt = "link to symmetry experiment"><img src="./data/ThreeJsSymmetry.PNG" class= "large-image"></a>
+          I develop websites and draw with code. Try controlling this symmetry experiment. You can adjust some parameters, rotate and zoom.  
+    
+        </p>
     
     </section>
+</div>
+<div id = "threejsBiggercontainer">
+  <div id = "threejscontainer">
+      <div class= "scrollButtons">
+        <div class = "sb"><a href="#WebDevelopment" class = "scroll"><i class="fas fa-arrow-up IconColor" alt = "up"></i></a></div>
+        <div class = "sb"><a href="#Interactivity" class = "scroll"><i class="fas fa-arrow-down IconColor" alt = "down"></i></a></div>
+      </div>
+    <div id="gui-container"></div> 
+    <div id="symmetryContainer"></div>
+  
+  </div>
+</div>
+    <div class  = "container">
      
   <section id="Interactivity" class="content-section container">
            
@@ -51,7 +73,8 @@
       <li>Software development</li>
       <li>Hardware assembly</li>
       <li>Project management</li>
-    </ul>       
+    </ul>     
+  
     <div class= "iframe-container-169">
       <iframe src="https://www.instagram.com/p/BP4kxMuAdaA/embed"  ></iframe>
     </div>
@@ -59,7 +82,7 @@
     Interactive installation, Australian Open 2017
     </p>    
     <h3>More<a href = "interactivityPage.html"> interactivity projects</a> </h3>
-  </section>
+    </section>
 
 <section id="Automation" class="content-section container">
   <h2 class= "section-header" >Automation</h2>
@@ -68,22 +91,25 @@
    <img src="./data/process automation2.jpg" class= "large-image">
    <p class = "content-description" > Prototype phase of an industrial waste water treatment machine, commissioned by <a href= "https://www.memflotech.com.au/index.html">
   Memflow Water technology</a> and <a href = "http://enviro-now.com/"> Enviro-now</a></p> 
+    
+  
 </section>
-
 <section id="about" class="content-section container">
   <h2 class= "section-header" >About</h2>  
   <p class= "sectionparagraph">
-      I started coding in C++ while graduating in <a href = "https://en.wikipedia.org/wiki/Materials_science"> Materials Science</a>, a subject involving Physics, Chemistry and Mathematics 
-        applied to the development of new materials. I have been working in sales of electronics systems for the past four years and skateboarding since 2001.
-        In my spare time I have been designing, assembling and programming various types of electronics systems as a private contractor.
+      I started coding in C++ while graduating in Materials Science, an interdisciplinary field of study involving Chemistry, Physics and Mathematics 
+      applied to the development of new materials (link to <a href = "https://en.wikipedia.org/wiki/Materials_science">
+        Wikipedia Materials Science Page</a> , if you'd like to know more about it). I have been working in sales of electronics systems for the past three years.
+        In my spare time I have been designing, assembling and programming electronics systems as a private contractor.
         Along the way I picked up more languages and frameworks to suit different needs, such as
  
     
-  <ul class = "section-list">  
+  <ul class = "section-list">
+  
   <li>more C++ (Openframeworks, OpenCV, some <a href = "cyclingcolors.html">code here</a>)</li>
   <li>OpenGL and WebGL</li>
   <li>Java (Processing, LXstudio)</li>
-  <li>Python</li>
+  <li>Python (Raspberry Pi)</li>
   <li>Mql4</li>
   <li>Scio Molecular Spectroscopy Dev Kit</li>
   <li>Brand specific programmable  logic controller languages (Arduino, Splat controls, Allen Bradley)</li> 
@@ -92,29 +118,32 @@
  
   Some of my certifications and profiles
    <ul class = "links-list">
-    <li><a href = "https://www.freecodecamp.org/certification/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671/responsive-web-design">Responsive Web Design certification</a></li>   
-    <li><a href = "https://www.freecodecamp.org/certification/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671/javascript-algorithms-and-data-structures">JavaScript Algorithms and Data Structures certification</a></li>
-    <li><a href = "https://www.freecodecamp.org/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671">My Freecodecamp profile</a><li></li>
-    <li><a href = "https://codepen.io/ale5/" >My Codepen profile</a></li>
-  </ul>
+  <li><a href = "https://www.freecodecamp.org/certification/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671/responsive-web-design">Responsive Web Design certification</a></li>   
+  <li><a href = "https://www.freecodecamp.org/fcc9e6e3f93-0258-4926-b468-a21c9ffa4671">My Freecodecamp profile</a><li></li>
+  <li><a href = "https://codepen.io/ale5/" >My Codepen profile</a></li>
+   </ul>
 </section>
   
-<section id = "Contact" class="content-section container">
+  <section id = "Contact" class="content-section container">
   <p class= "sectionparagraph">
           
   Would you like me to develop something for you or your business?<br>
 
   <div class = "b">
-    </p>
+
   <a href="mailto:cesaless@gmail.com"><i class="fas fa-envelope p-icon"></i>Email</a>
   <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x p-icon"></i>Instagram</a>
   </div>
-
+</p>
 </section>
+
+  
+  
 
 </div>
 
 <footer class ="main-footer">
+<!--<h3 class = "main-title-small">Ale</h3>-->
 
 <div class = "c">
 <i class="far fa-copyright"></i> Alessandro Cesana 2018 <a  href="mailto:cesaless@gmail.com"><i class="fas fa-envelope "> </i></a>
@@ -123,7 +152,6 @@
 </div>
 
 </footer>
-<!--
 <script type="x-shader/x-vertex" id="vertexshader">
 
   attribute float scale;
@@ -175,8 +203,10 @@
     var groupsDistancesY = 100;
     var groupsDistancesZ = 100;
     
-    let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
-    let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
+    let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;
+    
+    let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;
+    
     var incrementX = 0.001, incrementY = 0.001, incrementZ = 0.001;
     var Nodes, countX = 0, countY = 0, countZ = 0;
     
@@ -199,7 +229,8 @@
     
     //-----------------------------------------------------------------------/initialize things
     
-    function init() {    
+    function init() {
+    
       //var container = document.getElementById( 'canvas' ); 
      //var container =  document.querySelector("canvas")
      //container = document.createElement( 'div' );
@@ -208,12 +239,15 @@
       camera.position.z = 100;      
       
       ///define set of parameters of gui
-      var effectController = {            
+      var effectController = {
+            
               GeneralDistances:30,
               nodesDistancesY: 30,
-              nodesDistancesZ:30,          
+              nodesDistancesZ:30,
+          
               Speed1:0.0005,
-              Speed2:0.0001,             					
+              Speed2:0.0001,
+             					
             };
       //LINKING GUI TO VARIABLES
       var valuesChanger = function () {
@@ -232,9 +266,11 @@
 guiContainer.appendChild(gui.domElement);
     //adding parameters to gui
     
-      gui.add( effectController, "GeneralDistances", 0, 100.0, 1 ).onChange( valuesChanger );       
+      gui.add( effectController, "GeneralDistances", 0, 100.0, 1 ).onChange( valuesChanger );
+       
       gui.add( effectController, "Speed1", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
-      gui.add( effectController, "Speed2", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );     
+      gui.add( effectController, "Speed2", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
+     
     
       scene = new THREE.Scene();  
       var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
@@ -282,7 +318,7 @@ guiContainer.appendChild(gui.domElement);
       Nodes = new THREE.Points( geometry, material );   
       scene.add( Nodes );
       renderer = new THREE.WebGLRenderer( { antialias: true } );
-      renderer.setPixelRatio(window.devicePixelRatio );
+      renderer.setPixelRatio( window.devicePixelRatio );
       //renderer.setSize( container.innerWidth, container.innerHeight );
       renderer.setSize(  window.innerWidth, window.innerHeight  );
 
@@ -415,15 +451,7 @@ guiContainer.appendChild(gui.domElement);
     }
       
     </script>
-  -->
-  <script src="https://use.fontawesome.com/09878ab60a.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src=".\js\main.js"></script>
-  <script src="./js/three.min.js"></script>
-  <script src="./js/datguimin.js"></script>
-  <script src="./js/stats.js-master/build/stats.min.js"></script>
-  <script src="./js/TrackballControls.js"></script>   
-  <script src="./js/WebGL.js"></script>   
+
 </body>
 </html>
 
