@@ -1,67 +1,59 @@
-//scroll function using jquery
-$(document).ready(function() {
 
-  var scrollLink = $('.scroll');
-  
-  // Smooth scrolling
-  scrollLink.click(function(e) {
-    e.preventDefault();
-    $('body,html').animate({        
-      scrollTop: $(this.hash).offset().top - 50
-    }, 1500 );
-  });
-  
-  // Active link switching
-  $(window).scroll(function() {
-    var scrollbarLocation = $(this).scrollTop();      
-    scrollLink.each(function() {           
-      var sectionOffset = $(this.hash).offset().top ;        
-      if ( sectionOffset <= scrollbarLocation ) {
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active');
-      }      
-    })      
-  })
+//var windowsize =  $(window).width();
 
-  //animations functions
+ function navIconActivate(){ 
+     $('.main-nav').toggleClass('active')
+}
 
- var mainNav = document.getElementById('js-menu');
- var navBarToggle = document.getElementById('js-navbar-toggle');
-  
 
-  $( "#js-navbar-toggle" ).click(function() {
-    //mainNav.classList.toggle('active');
-    $('#js-menu').toggleClass('active') ///solutio to refine, as in anytime you resize window the navbar is toggled, 
-    //you want it to be collapsed instead
-  });
 
-  $( ".main-nav a" ).click(function() {
-    //mainNav.classList.toggle('active');
-    $('#js-menu').toggleClass('active') ///CHANGE TO TOGGLE HEIGHT
 
-  });
+
+function removeClickFunction(){
+ // $('.main-nav a').off()
+  console.log('functionremoved') 
+  if ($('.main-nav').hasClass('active')){
+   $('.main-nav').toggleClass('active');
+  console.log('classremoved')
+  }
+}
+
+
+    var mqList = window.matchMedia( "(min-width: 770px)" );  
+    mqList.addListener(mediaChange);
+    
  
+  //mediaChange(mqList);
 
-  
-  //add forced active off
+  function mediaChange(mqList){
+  if (mqList.matches) {
+   /// console.log("bigwindow");
+   // console.log(mqList.matches);
+    removeClickFunction();
+    smoothScroll();
+    } else {
+    // window width is less than 700px
+    console.log("small window");
+    $( '#navbar-icon').off().click(navIconActivate)
+   $( ".main-nav a" ).off().click(navIconActivate) 
+   smoothScroll() 
+    }
+    
+  }
 
-      
-  
-  
-  
+     // Add smooth scrolling to all links
 
-  
-  
-
-
-
-})
-
+     function smoothScroll(){
+     $(".scroll").on('click', function(event) {
+       event.preventDefault();
+        var hash = this.hash;     
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top -50}, 500)        
+    });
+  }
 
 
+  $(document).ready(function(){    
+    mediaChange(mqList);
+   })
 
-
-  
-
-
-  

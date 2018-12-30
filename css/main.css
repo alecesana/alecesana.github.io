@@ -2,75 +2,112 @@
 *{
     font-family: 'IBM Plex Sans', sans-serif;
     color: #777;
+    
 
     
 }
-
+/*
+html {
+    scroll-behavior: smooth;
+  }
+*/
 body{
     box-sizing: border-box;
     margin:0;
     padding:0;
     overflow-x: hidden;
 }
-/*header*/
-
 
 .main-header{
     display:flex;
+    flex-direction: row;
     position:sticky;
+    position: -webkit-sticky; /*add other browsers styles*/
     z-index:3;
     top:0;
     background:white;
     width:100%;
     height:45px;
+    margin:0;
    color:white;
    background-color:black; 
 }
 
 
 .main-title{
-    display: inline-block;
-    width:30vw;
+    display: flex;
+    width:20vw;
+    height:45px;
     text-align:left;
     color:white;
     margin:0 0 3em 0;    
     border:0;
     padding: 0 0 0 0.5em;         
     font-size: 36px;    
-    font-weight:bolder;
-    
+    font-weight:bolder;    
+   
 }
 .main-title a{
     text-decoration: none;
     color:white;
 }
 
-.navbar {
-    position:relative;
-    width:30vw;
-    margin-left:40vw;
-    padding-bottom: 0;
-    text-align:left;
+.inLineHeaderContainer {
+    width:80vw;
+     
+}
 
+#navElementsContainer{    
+    display: flex;
+    flex-direction: column;  
+    align-items: flex-end;      
+    }
+
+.navbar-toggle {        
+    text-align:center;
+    text-justify: center;    
+    cursor: pointer;     
+    font-size: 36px;
+    width:30%;    
+    padding-top:2.5px;
+}
+    
+
+#navContainer{      
+    background-color:black; 
+    width:38vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
 .main-nav{
-    width:100%;
-    list-style-type: none;
-    padding-left:3%;
-    display: none;
-    margin-top:45px;
-    background-color:black;
-    
-
+   
+     height:0; 
+    list-style-type: none;          
+    border:0;
+    margin:0;
+    padding:0; 
+    -webkit-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
+    -moz-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
+    -ms-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
+     -o-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
+    transition: all 500ms cubic-bezier(0.675, 0.675, 0.645, 0.795);
+    overflow:hidden;  
     }
 
+.active {
+    height:200px;   /*make it number of elements in li*/  
+    }
    
 .main-nav a{
     color:white;
-    text-decoration:none;
+    text-decoration:none;  
+    font-size: 21px; 
     
-    margin:0;
+    
+
+    padding: 0.3em 10% 0% 10%;
     -o-transition:.5s;
   -ms-transition:.5s;
   -moz-transition:.5s;
@@ -82,11 +119,11 @@ body{
     color:darkorange;
 }
 
-
-.inlineAnchor{
-    
+.main-nav li{
+    line-height: 30px;
+}
+.inlineAnchor{    
         display: inline;
-
 }
 
 /*content*/
@@ -96,22 +133,23 @@ body{
     font-size: 0.8em;
 }
 
-.container{
-    display: flex;
-    flex-direction:column;    
-    margin:0 auto 0 auto;
-    padding: 0 0.5em;
+.container{        
+    width:100%;
+    padding:0;
+    
+       
     background-color: whitesmoke;
 }
 
 .container p{
-    font-weight:light;
+    font-weight:normal;
 }
 
 .section-header{
     font-size: 1.5em;
     text-align:left;
     font-weight: bold;
+    
 }
 
 
@@ -124,7 +162,6 @@ body{
 .section-list li{
     font-weight: bold;
     padding:2px 0 2px 0;
-
     margin:0;
 }
 
@@ -132,14 +169,12 @@ body{
 .links-list{
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
-
 }
 
 .links-list li{
     font-weight: bold;
     padding:2px 0 2px 0;
     margin:0;
-
 }
 
 
@@ -156,6 +191,7 @@ body{
    padding:10px;
    text-align:center;
    align-content: center;
+   margin:0;
 }
 
 
@@ -172,10 +208,10 @@ body{
 .main-footer a{
     text-decoration: none;
     color:white;
+   
 }
 
 .main-footer ul{
-    padding-left: 0px;
     margin:0px;
 }
 
@@ -183,10 +219,142 @@ body{
     color:white;    
     display:inline;
     margin:0;
-    padding:0 2%;
+    padding:0 3%;
     text-decoration: none;
 }
 
+
+.projectparagraph{
+    font-weight:normal;
+    }
+    
+.threejs1{
+width:70%; 
+justify-content:center;
+}
+
+
+
+
+
+label {
+    font-size:12px;	
+    width: 35vw;
+    padding:2px 0 2px 0;
+}
+
+select{     
+    width: 35vw;
+    border:none;
+}
+input{
+    font-size:14px;
+    border:none;
+}
+textarea{
+    border:none;
+}
+
+form{
+    width:45vw;
+    transition: background-color 2.5s ease;
+}
+    
+
+
+
+.content-section{
+    margin:auto;
+    padding:1%;
+    text-align: left;
+    width:96%;
+}
+    
+     
+   
+    
+    .container p{
+    font-weight:normal;
+    line-height: 22px;
+    }
+
+.b{
+    display:flex;
+    justify-content: center;
+}
+.b a{
+    padding: 0 5% 0 5%;
+}
+
+.c{
+    margin:auto;
+}
+
+.c a{
+    padding:5px;
+}
+.c a:last-child{
+    padding-left:2px;
+}
+
+canvas{
+    width: 100%;
+    height: 100%;
+}
+
+#threejsBiggercontainer{
+    display: flex;
+    flex-direction:column;       
+    background-color: black;
+    height:80%;
+
+}
+
+#threejscontainer{
+    
+    position: relative;
+    
+}
+#symmetrycontainer{
+    z-index:0;
+    position:relative;
+    height:10vh;
+}
+
+#gui-container {
+    position: absolute;
+    top: 5px;
+    left: 1em;
+    z-index: 1;
+    }
+
+    .scrollButtons{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;   
+    top:30vh;
+    left: 1em;  
+    z-index:1;
+    position:absolute;    
+    }
+
+    .sb{
+        margin:1em 0 1em 0;
+        width:60px;
+        height:60px;
+        font-size:35px;
+
+    }
+
+    #scrollDownButton a{
+    text-decoration: none;
+    color:white;
+    }
+    
+    .IconColor{
+    color:white;
+}
+    
 /*media content*/
 .large-image{
     display:flex;
@@ -231,184 +399,74 @@ body{
 }
 
 
-.projectparagraph{
-font-weight:normal;
-}
-
-.threejs1{
-width:70%; 
-justify-content:center;
-}
-
-
-.navbar-toggle {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer; 
-    color: rgba(255,255,255,1);
-    font-size: 24px;
-}
-
-label {
-    font-size:12px;	
-    width: 35vw;
-    padding:2px 0 2px 0;
-
-}
-
-select{     
-    width: 35vw;
-    border:none;
-}
-input{
-    font-size:14px;
-}
-textarea{
-    border:none;
-}
-
-form{
-    width:45vw;
-    transition: background-color 2.5s ease;}
-
-
-.active {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    -webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-
-  }
-
-  input{
-      border:none;
-  }
-  .content-section{        
-    width:96%;
-    }
-
-    .container p{
-    font-weight:normal;
-    line-height: 22px;
-    }
-
-.b{
-    display:flex;
-    justify-content: center;
-}
-.b a{
-    padding: 0 5% 0 5%;
-}
-
-.c{
-    margin:auto;
-}
-
-.c a{
-    padding:5px;
-}
-.c a:last-child{
-    padding-left:2px;
-}
-
-canvas{
-    width: 100%;
-    height: 100%;
-}
-
-#threejsBiggercontainer{
-    display: flex;
-    flex-direction:column;       
-    background-color: whitesmoke;
-
-}
-
-#threejscontainer{
-    
-    position: relative;
-   
-}
-#symmetrycontainer{
-    z-index:0;
-    position:relative;
-    height:30vh;
-}
-
-#gui-container {
-    position: absolute;
-    top: 5px;
-    left: 1em;
-    z-index: 1;
-  }
-
-  .scrollButtons{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;   
-    top:50vh;
-    left: 1em;  
-    z-index:1;
-    position:absolute;    
-  }
-
-  .sb{
-      margin:1em 0 1em 0;
-  }
-
-  #scrollDownButton a{
-    text-decoration: none;
-    color:white;
-  }
-  
-  .IconColor{
-    color:white;
-}
-
 
  
 
     /*desktop settings*/
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 770px) {
     
+    
+    .inLineHeaderContainer {
+        height:100%;
+        width:80vw;
+        display:flex;
+        margin-right:5vw;
+         
+    }
 
-    .navbar {
-        width:70%;
-        display: flex;        
-        padding-bottom: 0;
-        margin-left:10vw;
-        justify-items: flex-end;
-        align-items: center;
+    #navElementsContainer{    
+        display: flex;
+        flex-direction:row;  
+        align-content:center;  
+        margin-right:4vw;   
+        }
+
+    #navContainer{
+        width:85vw;
+        margin:auto;
+       
     }
     .main-nav {
+        position:relative;
         width:100%;        
-        margin-top:20px;
         display: flex;
-        margin-right: 30px;
+        margin-right:4vw;
         flex-direction: row;
         justify-content: flex-end;
+        height:auto;
     }
 
+    .main-nav a{
+        font-size: 17px;
+    }
+
+    .main-nav li {
+
+        height:23px;
+
+    }
+
+    
     .main-nav a {
         color:white;
         margin-right:3vw;
      
     }
+   
+    .main-nav li{
+        padding:0;
+    }
     
-  
+
+ 
     .navbar-toggle {
-        display: none;
+        display: none;       
+       
      }
    
-
+    
     .content-section{
-        margin:auto;
-        text-align: left;
+        
         width:70%;
     }
 
