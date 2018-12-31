@@ -147,7 +147,8 @@
                
                var container = document.getElementById("symmetryContainer")
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
-                camera.position.z = 700;      
+                camera.position.z = 500; 
+                camera.position.y = -800;     
                 
                 ///define set of parameters of gui
                 var effectController = {            
@@ -180,7 +181,7 @@
                    increment6= effectController.Speed6  
                 }
               
-                var gui = new dat.GUI({ autoPlace: false });
+                var gui = new dat.GUI({ autoPlace: false, height: 200});
                 var guiContainer = document.getElementById('gui-container');
                 guiContainer.appendChild(gui.domElement);
                 //var guiContainer = document.getElementById('gui-container');
@@ -328,20 +329,20 @@
                     for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                       theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count3/100000) + Math.sin(count4/100000))
-                      scales[ i ] = 2.5+( Math.sin(i+ count1 ));           
+                      scales[ i ] = 4.5+( Math.sin(i+ count1 ));           
                       radius[i] = 0.05*i+(Math.sin(count1/i) + Math.cos(count4/i)) * RadiusG1Parameter+ generalRadius * 5    
                     }
                  
                     for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                       theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count3/100000) + Math.cos(count4/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 2.7+( Math.sin(i+ count1 ));           
+                      scales[ i ] = 4.7+( Math.sin(i+ count2 ));           
                       radius[i] =i*0.03 + (Math.sin(count2/i) +Math.cos(count4/i))* RadiusG2Parameter+ generalRadius *5    
                     }
                     for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
                       theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count5/100000) - Math.cos(count6/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count3/100000) - Math.sin(count4/100000))
-                      scales[ i ] = 2.9+( Math.sin(i+ count1 ));           
+                      scales[ i ] = 4.9+( Math.sin(i+ count3 ));           
                       radius[i] = i*0.02+ (Math.sin(count3/i) - Math.cos(count4/i))*RadiusG3Parameter+ generalRadius * 5   
                     }
                 

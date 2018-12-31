@@ -323,9 +323,10 @@ canvas{
 
 #gui-container {
     position: absolute;
-    top: 15px;
-    left: 3em;
+    top: 5px;
+    left: 1em;
     z-index: 1;
+    height:20vh;
     }
 
     .scrollButtons{
@@ -333,7 +334,7 @@ canvas{
     flex-direction:column;
     justify-content:center;   
     top:30vh;
-    left: 1em;  
+    left: 85vw;  
     z-index:1;
     position:absolute;    
     }
@@ -488,5 +489,14 @@ canvas{
         border:none;
     
     }
+    .scrollButtons{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;   
+        top:30vh;
+        left: 1em;  
+        z-index:1;
+        position:absolute;    
+        }
 }
 
