@@ -107,16 +107,16 @@ body{
     
     
 
-    padding: 0.3em 10% 0% 10%;
-    -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-    transition:.5s;  
+   
 }
 
 .main-nav a:hover{
     color:darkorange;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+      transition:.5s;  
 }
 
 .main-nav li{
@@ -438,7 +438,7 @@ canvas{
     }
 
     .main-nav a{
-        font-size: 17px;
+        font-size: 18px;
     }
 
     .main-nav li {
