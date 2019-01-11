@@ -225,7 +225,7 @@
                     positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
                     positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
                     positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
-                    color.setHSL( 0.01 * ( i ), 0.5, 0.5 );					
+                    color.setHSL( 0.001 * ( i ), 0.5, 0.5 );					
                     color.toArray( colors, i * 3 );          
                 }
               
@@ -307,8 +307,11 @@
                 
                 var positions = Nodes.geometry.attributes.position.array;
                 var scales = Nodes.geometry.attributes.scale.array;
-                var color = Nodes.geometry.attributes.customColor.array;  
+                var color = new THREE.Color();
+
+                var colors = Nodes.geometry.attributes.customColor.array;  
                 var elapsedTime = clock.getElapsedTime()
+                var timeOscillator = Math.sin(elapsedTime)
               
                 RadiusG1Parameter += Math.sin(elapsedTime/2) + Math.cos(elapsedTime/0.5)
                 RadiusG2Parameter += Math.sin(elapsedTime/5) + Math.sin(elapsedTime/1.3)
@@ -327,32 +330,60 @@
               
               //--------------------------------------------------------------------------g1
                     for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
+                      theta[i] = i* (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count3/100000) + Math.sin(count4/100000))
                       scales[ i ] = 4.5+( Math.sin(i+ count1 ));           
-                      radius[i] = 0.05*i+(Math.sin(count1/i) + Math.cos(count4/i)) * RadiusG1Parameter+ generalRadius * 5    
+                      radius[i] = 0.05*i+(Math.sin(count1/i)) * RadiusG1Parameter+ generalRadius * 5 
+                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/500), 1, 0.5 );	
+                      color.toArray( colors, i * 3 ); 
+                          
                     }
                  
                     for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count3/100000) + Math.cos(count4/100000))
+                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
                       scales[ i ] = 4.7+( Math.sin(i+ count2 ));           
-                      radius[i] =i*0.03 + (Math.sin(count2/i) +Math.cos(count4/i))* RadiusG2Parameter+ generalRadius *5    
+                      radius[i] =i*0.03 + (Math.sin(count2/i))* RadiusG2Parameter+ generalRadius *5   
+                        
                     }
                     for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
-                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count5/100000) - Math.cos(count6/100000))
-                      phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count3/100000) - Math.sin(count4/100000))
+                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
+                      phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
                       scales[ i ] = 4.9+( Math.sin(i+ count3 ));           
-                      radius[i] = i*0.02+ (Math.sin(count3/i) - Math.cos(count4/i))*RadiusG3Parameter+ generalRadius * 5   
+                      radius[i] = i*0.02+ (Math.sin(count3/i))*RadiusG3Parameter+ generalRadius * 5   
+                       
                     }
-                
+                //make groups individually shifted
                 //cartesian positions from spherical coordinates
               
-                    for ( var i = 1; i < nNodes*3* nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
+                for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i+=3){           
+                        positions[ i  ] =  3000*timeOscillator +radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
+                        positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
+                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
+                               
+			
+     
+                    }   
+
+                    for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i+=3){
+                        positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
+                        positions[ i+1] =  3000* (-timeOscillator)+  radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
+                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
+                               
+			
+     
+                    } 
+
+                    for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i+=3){
                         positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
                         positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                        positions[ i+2] = radius[i]*Math.cos(theta[i]);         
-                    }   
+                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
+                              
+		
+     
+                    } 
+	
+                     
               
                 
                 ///counters to move things around, should be replaced with real time as this relates movement to fps in a silly and ugly way https://threejs.org/docs/#api/en/core/Clock
