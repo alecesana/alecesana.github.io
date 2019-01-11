@@ -1,6 +1,6 @@
 
 //var windowsize =  $(window).width();
-
+{
 function navIconActivate(){ 
   $('.main-nav').toggleClass('active')
 }
@@ -45,4 +45,4 @@ $(".scroll").on('click', function(event) {
  mediaChange(mqList);  
  
 
-
+}

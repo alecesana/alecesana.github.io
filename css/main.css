@@ -129,8 +129,7 @@ body{
 /*content*/
 
 
-.content-description{
-    font-size: 0.8em;
+.content-description{    font-size: 0.8em;
 }
 
 .container{        
@@ -156,7 +155,7 @@ body{
 .section-list   {  
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
- 
+    
 }
 
 .section-list li{
