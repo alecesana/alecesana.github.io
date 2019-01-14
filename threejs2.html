@@ -101,15 +101,15 @@
               var camera, scene, renderer;
               var nNodes =30;
               var nGroupsgTheta = 30;//aka groups shifted on theta angle
-              var nGroupsgPhi = 30  ///aka groups shifted on phi angle    
-              let gTheta =30, gPhi = 30
+              var nGroupsgPhi = 30 ///aka groups shifted on phi angle    
+              var gTheta =30, gPhi = 30
               var clock = new THREE.Clock();
           
               //addons to use spherical coordinates
-              let radius = [nNodes*nGroupsgTheta*nGroupsgPhi]
+              var radius = [nNodes*nGroupsgTheta*nGroupsgPhi]
               var RadiusG1Parameter = 60, RadiusG2Parameter = 120, RadiusG3Parameter= 180
-              let theta = [nNodes*nGroupsgTheta*nGroupsgPhi]
-              let phi = [nNodes*nGroupsgTheta*nGroupsgPhi]
+              var theta = [nNodes*nGroupsgTheta*nGroupsgPhi]
+              var phi = [nNodes*nGroupsgTheta*nGroupsgPhi]
               
               var nodesDistancesX=30
               var nodesDistancesY = 30
@@ -119,16 +119,44 @@
               var groupsDistancesY = 100;
               var groupsDistancesZ = 100;
               
-              let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
-              let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
-              var increment1 = 0.001, increment2 = 0.001, increment3 = 0.001, increment4 = 0.001, increment5 = 0.001, increment6 = 0.001;
+              var groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
+              var nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
+              var increment1 = 0.001, increment2 = 0.001, increment3 = 0.001, Speed4 = 0.001, Speed5 = 0.001, Speed6 = 0.001;
               var Nodes, count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0
               var phiSpread = 0.01, thetaSpread = 0.01
+              var generalRadius, timeOscillator
+              //vars to affect groups in a very granular way
+              var nGrains = nNodes* nGroupsgPhi * nGroupsgTheta; ///varibale useful to frame things, not necessary for program to work
+              var controllableGroups = 30;
+
+              //addons to shift whole groups in 3d space
+              var gX = [controllableGroups]
+              var gY = [controllableGroups]
+              var gZ = [controllableGroups]
+
+              var gSpeedX = [controllableGroups]
+              var gSpeedY = [controllableGroups]
+              var gSpeedZ = [controllableGroups]
+
+              var groupRadius = [controllableGroups]
+
+              ///boundaryBox
+
+              var boundaryBoxDimension = 1000;
+
+
               
+              
+
+              //----------------------------------------------
               var mouseX = 0, mouseY = 0;
               
               var windowHalfX = window.innerWidth / 2;
               var windowHalfY = window.innerHeight / 2;
+
+              
+
+
               
               init();
               
@@ -151,7 +179,8 @@
                 camera.position.y = -900;     
                 
                 ///define set of parameters of gui
-                var effectController = {            
+                var effectController = { 
+                        controllableGroups:30,           
                         GeneralDistances:30,
                         nodesDistancesY: 30,
                         nodesDistancesZ:30,
@@ -162,23 +191,31 @@
                         Speed3:0.0001, 
                         Speed4:0.0001,
                         Speed5:0.0001, 
-                        Speed6:0.0001             					
+                        Speed6:0.0001,   
+                               					
                       };
                 //LINKING GUI TO VARIABLES
                 var valuesChanger = function () {
                   
+                   controllableGroups = effectController.controllableGroups
                    nodesDistancesX = effectController.GeneralDistances
                    nodesDistancesY = effectController.GeneralDistances
                    nodesDistancesZ = effectController.GeneralDistances
                    phiSpread= effectController.phiSpread
                    thetaSpread = effectController.thetaSpread
       
-                   increment1= effectController.Speed1 
-                   increment2= effectController.Speed2 
-                   increment3= effectController.Speed3
-                   increment4= effectController.Speed4 
-                   increment5= effectController.Speed5 
-                   increment6= effectController.Speed6  
+                   increment1 = effectController.Speed1 
+                   increment2 = effectController.Speed2 
+                   increment3 = effectController.Speed3
+
+                   ///---to change to x, y,z (used for groups speed control atm)
+                   Speed4 = effectController.Speed4 
+                   Speed5 = effectController.Speed5 
+                   Speed6 = effectController.Speed6  
+                  // shiftX = effectController.shiftX
+                   //shiftY = effectController.shiftY
+                  // shiftZ = effectController.shiftZ 
+
                 }
               
                 var gui = new dat.GUI({ autoPlace: false, height: 200});
@@ -193,13 +230,19 @@
            
                 gui.add( effectController, "Speed1", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
                 gui.add( effectController, "Speed2", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
-                gui.add( effectController, "Speed3", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
-                gui.add( effectController, "Speed4", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
-                //gui.add( effectController, "Speed5", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
-               // gui.add( effectController, "Speed6", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );     
+                //gui.add( effectController, "Speed3", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );
+               // gui.add( effectController, "shiftX", -3000, 3000, 1 ).onChange( valuesChanger );
+                //gui.add( effectController, "shiftY", -3000, 3000, 1 ).onChange( valuesChanger );
+               // gui.add( effectController, "shiftZ", -3000, 3000, 1 ).onChange( valuesChanger );
+                gui.add( effectController, "controllableGroups", 1 , 30, 1 ).onChange( valuesChanger );
+
+                gui.add( effectController, "Speed4", -3, 3, 0.000001 ).onChange( valuesChanger );
+                gui.add( effectController, "Speed5", -3, 3, 0.000001 ).onChange( valuesChanger );
+               gui.add( effectController, "Speed6", -3, 3, 0.000001 ).onChange( valuesChanger );     
               
                 scene = new THREE.Scene();  
                 var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
+               // var groupsPositions = new Float32Array(controllableGroups * 3);
                 var scales = new Float32Array( nNodes * nGroupsgTheta*nGroupsgPhi);
                 var colors = new Float32Array( nNodes*nGroupsgTheta*nGroupsgPhi * 3 );
                 var color = new THREE.Color();
@@ -210,7 +253,9 @@
                 radius[0]= RadiusG1Parameter+  Math.sqrt(Math.pow(nodesDistancesX,2) + Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )  
                 positions[ 0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); 
                 positions[ 1] = radius[0]*Math.sin(theta[0])*Math.sin(phi[0]); 
-                positions[ 2 ] = radius[0]*Math.cos(theta[0]); 
+                positions[ 2] = radius[0]*Math.cos(theta[0]); 
+
+                /*
                 ///radius, gTheta, phi of groups    
                 for(var i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
                       theta[i] = i * (360/nGroupsgTheta) +  Math.sin(count1)
@@ -228,10 +273,50 @@
                     color.setHSL( 0.001 * ( i ), 0.5, 0.5 );					
                     color.toArray( colors, i * 3 );          
                 }
+*/
+                  //spherical coordinates of three groups
+              
+              //--------------------------------------------------------------------------g1
+              //gI = groups iterator 
+              generalRadius  = Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2)) //given by general distances
+
+              for(var gI = 1; gI <= controllableGroups;gI++){
+                groupRadius[gI] = 400
+                    for(var i=(gI-1)*nGrains/controllableGroups; i < gI * nGrains/controllableGroups;i++){
+                      theta[i] = i*(360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
+                      phi[i] =  i* (360/nGroupsgPhi) * phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
+                      scales[ i ] = 4.5+( Math.sin(i+ count4 ));           
+                      radius[i] = 0.05*i+(Math.sin(count1/i)) * groupRadius[gI] + generalRadius * 5 
+                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/30000), 1, 0.5 );	
+                      color.toArray( colors, i * 3 );                       
+                          
+                    }
+                    gX[gI] = 0
+                    gY[gI] = 0
+                    gZ[gI] = 0
+
+                    gSpeedX[gI] = Math.random(3) + Speed4;
+                    gSpeedY[gI] = Math.random(3) + Speed5;
+                    gSpeedZ[gI] = Math.random(3) + Speed6;
+
+            
+
+              }
+          
+              
+                //cartesian positions from spherical coordinates
+                for(var gI = 1; gI <= controllableGroups;gI++){
+                  for(var i= 3+(gI-1)*nGrains/controllableGroups; i < gI*nGrains/controllableGroups;i+=3){           
+                          positions[ i  ] = (gX[gI])+radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
+                          positions[ i+1] = (gY[gI])+radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
+                          positions[ i+2] = (gZ[gI])+radius[i]*Math.cos(theta[i]);                         
+        
+                      }   
+                }
               
                 geometry = new THREE.BufferGeometry();  
                 geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
-               geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
+                geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
                 geometry.addAttribute( 'scale', new THREE.BufferAttribute( scales, 1 ) );
               
                 var material = new THREE.ShaderMaterial( {
@@ -303,93 +388,143 @@
                 render();
               }
               
+              ///---------------------------------------------------------------------- render/update
               function render() {    
                 
                 var positions = Nodes.geometry.attributes.position.array;
                 var scales = Nodes.geometry.attributes.scale.array;
+                //var groupsPositions = Nodes.geometry.attributes.groupsPositions.array;
                 var color = new THREE.Color();
 
                 var colors = Nodes.geometry.attributes.customColor.array;  
                 var elapsedTime = clock.getElapsedTime()
                 var timeOscillator = Math.sin(elapsedTime)
               
-                RadiusG1Parameter += Math.sin(elapsedTime/2) + Math.cos(elapsedTime/0.5)
+                RadiusG1Parameter += Math.sin(elapsedTime/2) + Math.sin(elapsedTime/1.5)
                 RadiusG2Parameter += Math.sin(elapsedTime/5) + Math.sin(elapsedTime/1.3)
-                RadiusG3Parameter += Math.sin(elapsedTime) + Math.sin(elapsedTime/9.5)
+                RadiusG3Parameter += Math.sin(elapsedTime/3) + Math.sin(elapsedTime/9.5)
       
                 //generalRadius is given by generalDistances
-                var generalRadius  = Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2)) //given by general distances
+                generalRadius  = Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2)) //given by general distances
                 //settig up node 0
                 theta[0] = (360/nGroupsgTheta) +  Math.sin(count1)
                 phi[0] =  (360/nGroupsgPhi) +  Math.sin(count1)
                 scales[ 0 ] = 5
-                radius[0]= RadiusG1Parameter+  generalRadius  
-                positions[ 0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); // x
+                radius[0]= RadiusG1Parameter+ generalRadius  
+                positions[0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); // x
+                positions[1] = radius[1]*Math.sin(theta[1])*Math.sin(phi[1]); 
+                positions[2] = radius[2]*Math.cos(theta[2]);                
               
               //spherical coordinates of three groups
               
               //--------------------------------------------------------------------------g1
-                    for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                      theta[i] = i* (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
-                      phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count3/100000) + Math.sin(count4/100000))
-                      scales[ i ] = 4.5+( Math.sin(i+ count1 ));           
-                      radius[i] = 0.05*i+(Math.sin(count1/i)) * RadiusG1Parameter+ generalRadius * 5 
-                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/500), 1, 0.5 );	
-                      color.toArray( colors, i * 3 ); 
+              //gI = groups iterator 
+              for(var gI = 1; gI <= controllableGroups;gI++){
+                groupRadius[gI] = Math.sin(elapsedTime+gI) 
+                    for(var i=(gI-1)*nGrains/controllableGroups; i < gI * nGrains/controllableGroups;i++){
+                      theta[i] = i*(360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
+                      phi[i] =  i* (360/nGroupsgPhi) * phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
+                      scales[ i ] = 4.5+( Math.sin(i+ count4 ));           
+                      radius[i] = 0.05+(Math.sin(count1)) * groupRadius[gI] + generalRadius * 5 
+                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/300), 1, 0.5 );	
+                      color.toArray( colors, i * 3 );            
                           
                     }
-                 
-                    for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
-                      phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.7+( Math.sin(i+ count2 ));           
-                      radius[i] =i*0.03 + (Math.sin(count2/i))* RadiusG2Parameter+ generalRadius *5   
-                        
+
+                    //gSpeedX[gI] = 1;
+                    //gSpeedY[gI] = 0;
+                    //gSpeedZ[gI] = 0;
+
+                    
+
+
+//boundaries   ///upper
+                    if(gX[gI] >= boundaryBoxDimension){
+                      gX[gI] = boundaryBoxDimension ///boundaryx
+                      gSpeedX[gI] *= -1
                     }
-                    for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
-                      theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
-                      phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.9+( Math.sin(i+ count3 ));           
-                      radius[i] = i*0.02+ (Math.sin(count3/i))*RadiusG3Parameter+ generalRadius * 5   
-                       
+
+                    if(gY[gI] >= boundaryBoxDimension){
+                      gY[gI] = boundaryBoxDimension
+                      gSpeedY[gI] *= -1
                     }
-                //make groups individually shifted
+
+                    if(gZ[gI] >= boundaryBoxDimension){
+                      gZ[gI] = boundaryBoxDimension
+                      gSpeedZ[gI] *= -1
+                    }
+              ///lower
+                    if(gX[gI] <= -boundaryBoxDimension){
+                      gX[gI] = -boundaryBoxDimension ///boundaryx
+                      gSpeedX[gI] *= -1
+                    }
+
+                    if(gY[gI] <= -boundaryBoxDimension){
+                      gY[gI] = -boundaryBoxDimension
+                      gSpeedY[gI] *= -1
+                    }
+
+                    if(gZ[gI] <= -boundaryBoxDimension){
+                      gZ[gI] = -boundaryBoxDimension
+                      gSpeedZ[gI] *= -1
+                    }
+
+     //collisions, to find better solution (and working perhaps)
+               
+                  if(gX[gI] >= gX[gI+1]){
+                    gX[gI] = gX[gI] ///boundaryx
+                    gSpeedX[gI] *= -1
+
+                  }
+
+                  if(gY[gI] >= gY[gI+1]){
+                    gY[gI] = gY[gI] ///boundaryx
+                    gSpeedY[gI] *= -1
+
+                  }
+
+                  if(gZ[gI] >= gZ[gI+1]){
+                    gZ[gI] = gZ[gI] ///boundaryx
+                    gSpeedZ[gI] *= -1
+
+                  }
+
+                    gX[gI] += gSpeedX[gI]
+                    gY[gI] += gSpeedY[gI]
+                    gZ[gI] += gSpeedZ[gI]
+
+              }
+
+          
+              
                 //cartesian positions from spherical coordinates
-              
-                for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i+=3){           
-                        positions[ i  ] =  3000*timeOscillator +radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                        positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
-                               
-			
-     
-                    }   
+                for(var gI = 1; gI <= controllableGroups;gI++){
+                  for(var i= 3+(gI-1)*nGrains/controllableGroups; i < gI*nGrains/controllableGroups;i+=3){           
+                          positions[ i  ] = (gX[gI])+radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
+                          positions[ i+1] = (gY[gI])+radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
+                          positions[ i+2] = (gZ[gI])+radius[i]*Math.cos(theta[i]);                         
+                          
+                      }   
+                }
 
-                    for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i+=3){
-                        positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                        positions[ i+1] =  3000* (-timeOscillator)+  radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
-                               
-			
-     
-                    } 
+ 
+                    /*
+                     ///attempt to bounce apart if coordinates meet
+                     if(group1surphace == group2surphace)
+                     {
+                      x positions[ i] = -positions[ i]
+                      y positions[i+1] = -positions[ i+1]
+                      z positions[i+2] = positions[ i+2]
+                     }
 
-                    for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i+=3){
-                        positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                        positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                        positions[ i+2] = radius[i]*Math.cos(theta[i]);    
-                              
-		
-     
-                    } 
-	
-                     
-              
+              */
                 
                 ///counters to move things around, should be replaced with real time as this relates movement to fps in a silly and ugly way https://threejs.org/docs/#api/en/core/Clock
                 count1 += increment1;
                 count2 += increment2;
                 count3 += increment3; 
+
+                
                 //flag properties to be updated
                 Nodes.geometry.attributes.position.needsUpdate = true;
                 Nodes.geometry.attributes.scale.needsUpdate = true;
