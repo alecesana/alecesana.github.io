@@ -1,7 +1,7 @@
 
 *{
     font-family: 'IBM Plex Sans', sans-serif;
-    color: #777;
+    color: #2f3030;
     
 
     
@@ -130,7 +130,7 @@ body{
 
 
 .content-description{    
-    font-size: 0.9em;
+    font-size:1.2em;
     padding:1%;
     text-align:center;
     
@@ -144,14 +144,20 @@ body{
     background-color: whitesmoke;
 }
 
+.container h1{
+    font-size: 3em;
+}
+
 .container p{
     font-weight:normal;
 }
 
 .section-header{
-    font-size: 1.5em;
+    font-size: 2em;
     text-align:left;
     font-weight: bold;
+    color:black;
+    text-align: center;
     
 }
 
@@ -179,6 +185,7 @@ body{
 
 .section-list-long li{
     font-weight: bold;
+    font-size:1.3em;
     padding:2px 0 2px 0;
    
 }
@@ -188,10 +195,16 @@ section a{
 }
 
 .sectionparagraph{
-    font-size: 1em;
+    font-size: 1.3em;
+
+}
+.centeredParagraph{
+    font-size: 1.3em;
+    text-align:center;
 
 }
 .links-list{
+    font-size:1.3em;
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
 }
@@ -232,7 +245,6 @@ section a{
 
 .main-footer a{
     text-decoration: none;
-    color:white;
    
 }
 
@@ -241,7 +253,6 @@ section a{
 }
 
 .main-footer li{
-    color:white;    
     display:inline;
     margin:0;
     padding:0 3%;
@@ -525,6 +536,11 @@ canvas{
         z-index:1;
         position:absolute;    
         }
+
+        .section-header{
+            text-align: left;
+
+        }
     .section-list li{
         text-align: left;
     }
@@ -533,6 +549,10 @@ canvas{
         font-size: 1.3em;
         font-weight:lighter;
     
+    }
+
+    .content-description{
+        font-size:1.3em;
     }
 }
 
