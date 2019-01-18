@@ -129,7 +129,11 @@ body{
 /*content*/
 
 
-.content-description{    font-size: 0.8em;
+.content-description{    
+    font-size: 0.9em;
+    padding:1%;
+    text-align:center;
+    
 }
 
 .container{        
@@ -152,19 +156,41 @@ body{
 }
 
 
-.section-list   {  
+.section-list-long    {  
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
+
+    
+}
+
+.section-list  {  
+    list-style-type: none;
+    padding:0.3em 0 0.3em 0;
+
     
 }
 
 .section-list li{
     font-weight: bold;
     padding:2px 0 2px 0;
-    margin:0;
+    margin:auto;
+    text-align: center;
 }
 
+.section-list-long li{
+    font-weight: bold;
+    padding:2px 0 2px 0;
+   
+}
 
+section a{
+    font-weight:bold;
+}
+
+.sectionparagraph{
+    font-size: 1em;
+
+}
 .links-list{
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
@@ -264,8 +290,8 @@ form{
 
 .content-section{
     margin:auto;
-    padding:1%;
     text-align: left;
+    padding:1%;
     width:96%;
 }
     
@@ -275,6 +301,8 @@ form{
     .container p{
     font-weight:normal;
     line-height: 22px;
+    
+   
     }
 
 .b{
@@ -437,7 +465,7 @@ canvas{
     }
 
     .main-nav a{
-        font-size: 18px;
+        font-size: 21px;
     }
 
     .main-nav li {
@@ -497,5 +525,14 @@ canvas{
         z-index:1;
         position:absolute;    
         }
+    .section-list li{
+        text-align: left;
+    }
+
+    .sectionparagraph{
+        font-size: 1.3em;
+        font-weight:lighter;
+    
+    }
 }
 
