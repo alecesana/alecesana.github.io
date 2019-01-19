@@ -108,7 +108,7 @@
               positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
               positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
               positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
-              color.setHSL( 0.01 * ( i ), 0.5, 0.5 );					
+              color.setHSL( 0.01 * ( i ), 1, 0.5 );					
               color.toArray( colors, i * 3 );          
           }
         
