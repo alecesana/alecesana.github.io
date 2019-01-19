@@ -39,14 +39,15 @@
 
 
 
-    <div id = "threejsBiggercontainer">
-        <div id = "threejscontainer"> 
+    <div id = "threejsBiggercontainer2">
+        <div id = "threejscontainer2"> 
             <div class= "scrollButtons">
                 <div class = "sb"><a href="#header" class = "scroll"><i class="fas fa-arrow-up IconColor" alt = "up"></i></a></div>
                 <div class = "sb"><a href="#footer" class = "scroll"><i class="fas fa-arrow-down IconColor" alt = "down"></i></a></div>
-              </div>           
-          <div id="gui-container"></div> 
-        <div id="symmetryContainer"></div>        
+            </div>           
+            <div id="gui-container2"></div> 
+            <div id="symmetryContainer2"></div>        
+        </div>
     </div>
    
     
@@ -167,14 +168,14 @@
               animate();
               } else {
               var warning = WEBGL.getWebGLErrorMessage();
-              document.getElementById("symmetryContainer").appendChild(warning);
+              document.getElementById("symmetryContainer2").appendChild(warning);
               }
               
               //-----------------------------------------------------------------------/initialize things
               
               function init() {    
                
-               var container = document.getElementById("symmetryContainer")
+               var container = document.getElementById("symmetryContainer2")
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
                 camera.position.z = 500; 
                 camera.position.y = -900;     
@@ -220,7 +221,7 @@
                 }
               
                 var gui = new dat.GUI({ autoPlace: false, height: 200});
-                var guiContainer = document.getElementById('gui-container');
+                var guiContainer = document.getElementById('gui-container2');
                 guiContainer.appendChild(gui.domElement);
                 //var guiContainer = document.getElementById('gui-container');
               //adding parameters to gui

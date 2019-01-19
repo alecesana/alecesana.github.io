@@ -230,6 +230,7 @@ section a{
    text-align:center;
    align-content: center;
    margin:0;
+  
 }
 
 
@@ -340,31 +341,34 @@ canvas{
     height: 100%;
 }
 
-#threejsBiggercontainer{
+#threejsBiggercontainer1 , #threejsBiggercontainer2, #threejsBiggercontainer3{
+    z-index:0;
     display: flex;
     flex-direction:column;       
     background-color: black;
-    height:80%;
+    height:60%;
+   
 
 }
 
-#threejscontainer{
+#threejscontainer1 ,#threejscontainer2, #threejscontainer3{
     
     position: relative;
     
 }
-#symmetrycontainer{
-    z-index:0;
+#symmetrycontainer1, #threejscontainer2 , #threejscontainer3{
+    
     position:relative;
     height:10vh;
 }
 
-#gui-container {
+#gui-container1, #gui-container2, #gui-container3 {
     position: absolute;
     top: 5px;
     left: 1em;
     z-index: 1;
     height:20vh;
+    
     }
 
     .scrollButtons{
@@ -422,7 +426,7 @@ canvas{
 .iframe-container-169 iframe {
     border: 0;
     height: 100%;
-    left: 0;
+    
     position: absolute;
     top: 0;
     width: 100%;
@@ -431,7 +435,7 @@ canvas{
 .iframe-container-43 iframe {
     border: 0;
     height: 100%;
-    left: 0;
+    
     position: absolute;
     top: 0;
     width: 100%;
@@ -532,10 +536,13 @@ canvas{
         flex-direction:column;
         justify-content:center;   
         top:30vh;
-        left: 1em;  
+        left: 3em;  
         z-index:1;
         position:absolute;    
         }
+    #gui-container1, #gui-container2, #gui-container3 {    
+        left:3em;
+    }
 
         .section-header{
             text-align: left;

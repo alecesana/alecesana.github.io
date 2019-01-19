@@ -1,99 +1,3 @@
-<!DOCTYPE html>
-<html lang = "en">
-
-
-<head>
-<title>Ale Cesana</title>
-<meta name = "description" content = "Web and Software Developer Melbourne Australia . Code interactivity automation">
-<meta name = "keywords" content = "interactive installations web development code automation  Melbourne">
-<meta name ="viewport" content="initial-scale=1.0,width=device-width">
-<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-
-<link rel="stylesheet" href="css\main.css">
-</head>
-
-<body>  
-
-<header class="main-header" id = "header" >     
-    <div class = "main-title"><a href = "https://alecesana.github.io/" alt = "home">ALe</a></div>
-    <div class="inLineHeaderContainer"> 
-       <div id = "navElementsContainer">      
-         <div class="navbar-toggle" id="navbar-icon">
-             <i class="fas fa-bars IconColor"></i>
-         </div> 
-       <div id = "navContainer">  
-          <ul class= "main-nav" >    
-            <li><a href="interactivityPage.html" >interactivity</a></li>
-            <li><a href="index.html#Automation" >automation</a></li>
-            <li><a href="threejs1.html">web</a></li>
-            <li><a href = "cyclingcolors.html">code</a></li> 
-            <li><a href = "about.html"  >about</a></li>
-            <li><a href="index.html#Contact" >contact</a></li> 
-          </ul>
-       </div>    
-     </div> 
-    </div>
- </header>
-
-
-
-    <div id = "threejsBiggercontainer">
-        <div id = "threejscontainer"> 
-            <div class= "scrollButtons">
-                <div class = "sb"><a href="#header" class = "scroll"><i class="fas fa-arrow-up IconColor" alt = "up"></i></a></div>
-                <div class = "sb"><a href="#footer" class = "scroll"><i class="fas fa-arrow-down IconColor" alt = "down"></i></a></div>
-              </div>           
-          <div id="gui-container"></div> 
-        <div id="symmetryContainer1"></div>        
-    </div>
-
-    <footer class ="main-footer" id = "footer">
-
-      <div class = "c">
-      <i class="far fa-copyright"></i> Alessandro Cesana 2018 <a  href="mailto:cesaless@gmail.com"><i class="fas fa-envelope "> </i></a>
-      
-      <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x"></i></a>
-      </div>
-      
-    </footer>  
-    
-<script src="https://use.fontawesome.com/09878ab60a.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script type="text/javascript" src=".\js\main.js"></script>
-    <script src="./js/three.min.js"></script>
-    <script src="./js/datguimin.js"></script>
-    <script src="./js/stats.js-master/build/stats.min.js"></script>
-    <script src="./js/TrackballControls.js"></script>   
-    <script src="./js/WebGL.js"></script> 
-    <script type="x-shader/x-vertex" id="vertexshader">
-
-      attribute float scale;
-      attribute vec3 customColor;
-      varying vec3 vColor;
-    
-      void main() {
-        vColor = customColor;
-        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-        gl_PointSize = scale * ( 300.0 / - mvPosition.z );
-        gl_Position = projectionMatrix * mvPosition;
-    
-      }
-    
-    </script>
-    
-    <script type="x-shader/x-fragment" id="fragmentshader">
-    
-      uniform vec3 color;  
-      varying vec3 vColor;
-      void main() {
-        gl_FragColor = vec4( color * vColor, 1.0 );
-        gl_FragColor = gl_FragColor ;
-        if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
-      }
-    </script>  
-    <script>
 
         var container, stats, controls;
         var camera, scene, renderer;
@@ -169,7 +73,7 @@
           }
         
           var gui = new dat.GUI({ autoPlace: false });
-          var guiContainer = document.getElementById('gui-container');
+          var guiContainer = document.getElementById('gui-container1');
           guiContainer.appendChild(gui.domElement);
         //adding parameters to gui
         
@@ -355,9 +259,3 @@
           
         }
           
-        </script>
-    </body>
-    </html>
-    
-
- 

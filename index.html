@@ -43,18 +43,50 @@
           I develop websites and draw with code. Have a look at these symmetry experiments. 
           You can control groups' speed of rotation, distances between particles, zoom and rotate in 3D.   <br><br>
           
-
         </p>
     </section>
 </div>    
+<!--
 <div class  = "container">
 
          <a href = "threejs1.html" alt = "link to symmetry experiment 1"><img src="./data/ThreeJsSymmetry.PNG" class= "large-image"></a>
         <br>
-          <a href = "threejs2.html" alt = "link to symmetry experiment 2"><img src="./data/ThreeJsSymmetry2.PNG" class= "large-image"></a>
+         <a href = "threejs2.html" alt = "link to symmetry experiment 2"><img src="./data/ThreeJsSymmetry2.PNG" class= "large-image"></a>
         
        
 </div> 
+-->
+
+<div id = "threejsBiggercontainer1">
+  <div id = "threejscontainer1"> 
+      <div class= "scrollButtons">
+          <div class = "sb"><a href="#WebDevelopment" class = "scroll"><i class="fas fa-arrow-up IconColor" alt = "up"></i></a></div>
+          <div class = "sb"><a href="#WebDevelopment2"class = "scroll"><i class="fas fa-arrow-down IconColor" alt = "down"></i></a></div>
+        </div>           
+    <div id="gui-container1"></div> 
+  <div id="symmetryContainer1"></div>        
+</div>
+</div>
+
+  <section class = "content-section" id = "WebDevelopment2">
+<p class = "sectionparagraph"> 
+  Other examples can be found <a href = "threejs3.html">here</a> and <a href = "threejs2.html">here</a>   <br><br>
+  
+</p>
+</section>
+
+<!--
+<div id = "threejsBiggercontainer2">
+  <div id = "threejscontainer2"> 
+      <div class= "scrollButtons">
+          <div class = "sb"><a href="#WebDevelopment" class = "scroll"><i class="fas fa-arrow-up IconColor" alt = "up"></i></a></div>
+          <div class = "sb"><a href="#Interactivity" class = "scroll"><i class="fas fa-arrow-down IconColor" alt = "down"></i></a></div>
+        </div>           
+    <div id="gui-container2"></div> 
+  <div id="symmetryContainer2"></div>        
+</div>
+</div>
+-->
 <div class  = "container">    
   <section id="Interactivity" class="content-section container">
            
@@ -62,14 +94,15 @@
     <p class= "sectionparagraph">
     I create interactive installations. The following was coded for Australian Open 2017. More examples can be found  <a href = "interactivityPage.html"> here</a> 
     </p>
+    <div class= "iframe-container-169">
+        <iframe src="https://www.instagram.com/p/BP4kxMuAdaA/embed"  ></iframe>
+      </div>
+      <p class = "content-description"> 
+      Interactive installation, Australian Open 2017
+      </p> 
   </section>
 </div>         
-    <div class= "iframe-container-169">
-      <iframe src="https://www.instagram.com/p/BP4kxMuAdaA/embed"  ></iframe>
-    </div>
-    <p class = "content-description"> 
-    Interactive installation, Australian Open 2017
-    </p>    
+       
    
   
 <div class  = "container">
@@ -122,7 +155,38 @@
   <script src="./js/datguimin.js"></script>
   <script src="./js/stats.js-master/build/stats.min.js"></script>
   <script src="./js/TrackballControls.js"></script>   
-  <script src="./js/WebGL.js"></script>   
+  <script src="./js/WebGL.js"></script>  
+  
+
+  <script type="x-shader/x-vertex" id="vertexshader">
+
+    attribute float scale;
+    attribute vec3 customColor;
+    varying vec3 vColor;
+  
+    void main() {
+      vColor = customColor;
+      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+      gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+      gl_Position = projectionMatrix * mvPosition;
+  
+    }
+  
+  </script>
+  
+  <script type="x-shader/x-fragment" id="fragmentshader">
+  
+    uniform vec3 color;  
+    varying vec3 vColor;
+    void main() {
+      gl_FragColor = vec4( color * vColor, 1.0 );
+      gl_FragColor = gl_FragColor ;
+      if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+    }
+  </script>  
+  <script src="./js/threejs1.js"></script> 
+  <!--<script src="./js/threejs2.js"></script> -->
+
 </body>
 </html>
 
