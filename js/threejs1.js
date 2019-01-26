@@ -50,11 +50,12 @@
          //container = document.createElement( 'div' );
          var container = document.getElementById("symmetryContainer1")
           camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
-          camera.position.z = 100;      
+          camera.position.z = 100; 
+          camera.position.y = 100;     
           
           ///define set of parameters of gui
           var effectController = {            
-                  GeneralDistances:30,
+                  GeneralDistances:55,
                   nodesDistancesY: 30,
                   nodesDistancesZ:30,          
                   Speed1:0.0005,
