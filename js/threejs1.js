@@ -203,6 +203,8 @@
           scales[ 0 ] = 5
           radius[0]= RadiusG1Parameter+  Math.sqrt(Math.pow(nodesDistancesX,2) + Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )  
           positions[ 0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); // x
+          positions[1] = radius[1]*Math.sin(theta[1])*Math.sin(phi[1]); 
+          positions[2] = radius[2]*Math.cos(theta[2]); 
         
         //spherical coordinates of three groups
         
@@ -229,7 +231,7 @@
           
           //cartesian positions from spherical coordinates
         
-              for ( var i = 1; i < nNodes* nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
+              for ( var i = 3; i < nNodes* nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
                   positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
                   positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
                   positions[ i+2] = radius[i]*Math.cos(theta[i]);         
