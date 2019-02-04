@@ -1,7 +1,6 @@
 
 *{
     font-family: 'IBM Plex Sans', sans-serif;
-    color: #2f3030;
     
 
     
@@ -16,6 +15,8 @@ body{
     margin:0;
     padding:0;
     overflow-x: hidden;
+    color: #2f3030;
+
 }
 
 .main-header{
@@ -33,6 +34,10 @@ body{
    background-color:black; 
 }
 
+a{
+    color: #2f3030;
+    
+}
 
 .main-title{
     display: flex;
@@ -70,6 +75,7 @@ body{
     font-size: 36px;
     width:30%;    
     padding-top:2.5px;
+   
 }
     
 
@@ -148,8 +154,12 @@ body{
     font-size: 3em;
 }
 
+p{
+    line-height: 30px;
+}
 .container p{
     font-weight:normal;
+    
 }
 
 .section-header{
@@ -346,8 +356,7 @@ canvas{
     display: flex;
     flex-direction:column;       
     background-color: black;
-    height:60%;
-   
+    
 
 }
 
@@ -359,15 +368,18 @@ canvas{
 #symmetrycontainer1, #threejscontainer2 , #threejscontainer3{
     
     position:relative;
-    height:10vh;
+    
 }
 
 #gui-container1, #gui-container2, #gui-container3 {
     position: absolute;
-    top: 5px;
+    top: 70%;
     left: 1em;
     z-index: 1;
     height:20vh;
+    color:white;
+    text-align: left;
+
     
     }
 
@@ -397,6 +409,33 @@ canvas{
     .IconColor{
     color:white;
 }
+
+.movingDownIcon{
+    
+         animation: bounce 2s linear infinite;    
+         font-size:55px;
+}
+
+
+
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translate(0, 0);
+      
+    }
+    
+    50% {
+      transform: translate( 0, 13px);
+      
+    }
+    
+    80% {
+      transform: translate( 0, -13px,);
+      
+    }
+  }
+
     
 /*media content*/
 .large-image{
@@ -446,7 +485,7 @@ canvas{
  
 
     /*desktop settings*/
-  @media screen and (min-width: 770px) {
+  @media screen and (min-width: 900px) {
     
     
     .inLineHeaderContainer {
@@ -485,7 +524,7 @@ canvas{
 
     .main-nav li {
 
-        height:23px;
+        height:27px;
 
     }
 
@@ -541,7 +580,9 @@ canvas{
         position:absolute;    
         }
     #gui-container1, #gui-container2, #gui-container3 {    
-        left:3em;
+        left:3em;        
+        top:75%;
+        
     }
 
         .section-header{

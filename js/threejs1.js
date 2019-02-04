@@ -24,12 +24,17 @@
         let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
         let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
         var incrementX = 0.001, incrementY = 0.001, incrementZ = 0.001;
-        var Nodes, countX = 0, countY = 0, countZ = 0;
+        var Nodes, countX = 1000, countY = -3000, countZ = 0;
         
         var mouseX = 0, mouseY = 0;
         
         var windowHalfX = window.innerWidth / 2;
         var windowHalfY = window.innerHeight / 2;
+
+          //camera rotation
+          var camera_pivot = new THREE.Object3D()
+          var Y_AXIS = new THREE.Vector3( 0, 1, 0 );
+          var Z_AXIS = new THREE.Vector3(0,0,1);
         
         init();
         
@@ -51,13 +56,17 @@
          var container = document.getElementById("symmetryContainer1")
           camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
           camera.position.z = 100; 
-          camera.position.y = 100;     
+
+          camera_pivot.add( camera );
+          camera.position.set( 130, 0, 0 );
+          camera.lookAt( camera_pivot.position );
+              
           
           ///define set of parameters of gui
           var effectController = {            
-                  GeneralDistances:55,
-                  nodesDistancesY: 30,
-                  nodesDistancesZ:30,          
+                  GeneralDistances:27,
+                  nodesDistancesY: 0,
+                  nodesDistancesZ:0,          
                   Speed1:0.0005,
                   Speed2:0.0001,             					
                 };
@@ -83,6 +92,8 @@
           gui.add( effectController, "Speed2", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );     
         
           scene = new THREE.Scene();  
+          scene.add( camera_pivot );
+
           var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
           var scales = new Float32Array( nNodes * nGroupsgTheta*nGroupsgPhi);
           var colors = new Float32Array( nNodes*nGroupsgTheta*nGroupsgPhi * 3 );
@@ -109,7 +120,7 @@
               positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
               positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
               positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
-              color.setHSL( 0.01 * ( i ), 1, 0.5 );					
+              color.setHSL( 0.01 * ( i/100 ), 1, 0.5 );					
               color.toArray( colors, i * 3 );          
           }
         
@@ -135,7 +146,9 @@
           container.appendChild( renderer.domElement );
     
           //container.appendChild( renderer.domElement );
+
           //controls needs to be after renderer as it is referenced to it
+          /*
           controls = new THREE.TrackballControls( camera, renderer.domElement );
           controls.rotateSpeed = 1.0;
           controls.zoomSpeed = 1.2;
@@ -146,6 +159,7 @@
           controls.dynamicDampingFactor = 0.3;
           controls.keys = [ 65, 83, 68 ];
           controls.addEventListener( 'change', render );
+          */
           //stats = new Stats();
           //container.appendChild( stats.domElement );
           document.addEventListener( 'mousemove', onDocumentMouseMove, false );
@@ -157,7 +171,7 @@
           camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize( window.innerWidth, window.innerHeight );
-                controls.handleResize();
+                //controls.handleResize();
                 render();
         }
         
@@ -182,8 +196,10 @@
         //-----------------------------------------------------------------------/main animate loop
         function animate() {
           requestAnimationFrame( animate );
+          camera_pivot.rotateOnAxis( Y_AXIS, 0.001 );    // radians
+          camera_pivot.rotateOnAxis( Z_AXIS, 0.0001 );
           //stats.update();
-          controls.update();
+          //controls.update();
           render();
         }
         
