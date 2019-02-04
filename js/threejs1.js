@@ -11,13 +11,22 @@
         var Y_AXIS = new THREE.Vector3( 0, 1, 0 );
         var Z_AXIS = new THREE.Vector3(0,0,1);
 
+        var boundaryBoxDimension = 40;
 
-    
+        var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+
+        var attractor1x = 200
+        var attractor1y = 200
+        var attractor1z = 0
+
+        var gravityON = false;
         //addons to use spherical coordinates
         let radius = [nNodes*nGroupsgTheta*nGroupsgPhi]
         var RadiusG1Parameter = 60, RadiusG2Parameter = 120, RadiusG3Parameter= 180
         let theta = [nNodes*nGroupsgTheta*nGroupsgPhi]
         let phi = [nNodes*nGroupsgTheta*nGroupsgPhi]
+        
+
         
         var nodesDistancesX=30
         var nodesDistancesY = 30
@@ -55,7 +64,7 @@
          //var container =  document.querySelector("canvas")
          //container = document.createElement( 'div' );
          var container = document.getElementById("symmetryContainer1")
-          camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight/2, 1, 100000000 );
+          camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
           //camera.position.z = 87; 
 
           camera_pivot.add( camera );
@@ -96,38 +105,47 @@
           scene.add( camera_pivot );
 
           var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
+          var speeds = new Float32Array(nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
+          var accelerations = new Float32Array(nNodes * 3 * nGroupsgTheta*nGroupsgPhi);
+          var maxForces = new Float32Array(nNodes * 3 * nGroupsgTheta*nGroupsgPhi);
+          var maxSpeeds = new Float32Array(nNodes * 3 * nGroupsgTheta*nGroupsgPhi);
           var scales = new Float32Array( nNodes * nGroupsgTheta*nGroupsgPhi);
           var colors = new Float32Array( nNodes*nGroupsgTheta*nGroupsgPhi * 3 );
+
           var color = new THREE.Color();
-          ///setting up node 0
-          theta[0] = (360/nGroupsgTheta) +  Math.sin(countX)
-          phi[0] =  (360/nGroupsgPhi) +  Math.sin(countX)
-          scales[ 0 ] = 5
-          radius[0]= RadiusG1Parameter+  Math.sqrt(Math.pow(nodesDistancesX,2) + Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )  
-          positions[ 0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); 
-          positions[ 1] = radius[0]*Math.sin(theta[0])*Math.sin(phi[0]); 
-          positions[ 2 ] = radius[0]*Math.cos(theta[0]); 
-          ///radius, gTheta, phi of groups    
-          for(var i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
-                theta[i] = i * (360/nGroupsgTheta) +  Math.sin(countX)
-                phi[i] =  i* (360/nGroupsgPhi) +  Math.sin(countX)
-                scales[ i ] = ( Math.sin( i*(countX )  ))*20;           
-                radius[i] =  i*Math.sqrt(Math.pow(nodesDistancesX,2) + i*Math.pow(nodesDistancesY,2) + i*Math.pow(nodesDistancesZ,2) )          
-              }
+           
             
           //xyz of node 0         
         
-          for ( var i = 1; i < nNodes*3 * nGroupsgTheta * nGroupsgPhi ; i +=3 ) {            
-              positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-              positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-              positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
+          for ( var i = 1; i < nNodes*3 * nGroupsgTheta * nGroupsgPhi ; i +=3 ) { 
+            speeds[i  ] = 0.1 + Math.random()*0.1 *plusOrMinus;
+            speeds[i+1] = 0.1+ Math.random()*0.1 *plusOrMinus
+            speeds[i+2] = 0.1 + Math.random()*0.1 *plusOrMinus     
+            
+            
+              positions[ i] += speeds[i]; 
+              positions[ i+1] += speeds[i+1]; 
+              positions[ i+2 ] += speeds[i+2]; 
+
+              accelerations[i]   = 0.01
+              accelerations[i+1] = 0.01
+              accelerations[i+2] = 0.01
+
+              maxForces [i] = 3
+              maxSpeeds [i] = Math.random() * 3
+             //leaving 2nd and 3rd =0 as maxforce applies to all dimensions
+
               color.setHSL( 0.01 * ( i )/1000, 1, 0.5 );					
               color.toArray( colors, i * 3 );          
           }
         
           geometry = new THREE.BufferGeometry();  
           geometry.addAttribute( 'position', new THREE.BufferAttribute( positions, 3 ) );
-         geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
+          geometry.addAttribute('speed', new THREE.BufferAttribute(speeds,3));
+          geometry.addAttribute('acceleration', new THREE.BufferAttribute(accelerations,3));
+          geometry.addAttribute('maxSpeed', new THREE.BufferAttribute(maxSpeeds,3));
+
+          geometry.addAttribute( 'customColor', new THREE.BufferAttribute( colors, 3 ) );
           geometry.addAttribute( 'scale', new THREE.BufferAttribute( scales, 1 ) );
         
           var material = new THREE.ShaderMaterial( {
@@ -167,13 +185,21 @@
           window.addEventListener( 'resize', onWindowResize, false );
         }
         function onWindowResize() {
-          camera.aspect = window.innerWidth / window.innerHeight/2;
+          camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
-                renderer.setSize( window.innerWidth, window.innerHeight/2 );
+                renderer.setSize( window.innerWidth, window.innerHeight );
                 //controls.handleResize();
                 render();
         }
         
+   // key handler
+document.onkeydown = function(e) {
+  e.preventDefault();
+  if (e.key === "g") {             // left
+    console.log(gravityON)
+    gravityON = !gravityON;
+  }
+};
         /*
         function onDocumentMouseMove( event ) {
           mouseX = event.clientX - windowHalfX;
@@ -209,69 +235,102 @@
         
         function render() {    
           
+
           var positions = Nodes.geometry.attributes.position.array;
+          var speeds = Nodes.geometry.attributes.speed.array;
+          var accelerations = Nodes.geometry.attributes.acceleration.array
+          var maxSpeeds = Nodes.geometry.attributes.maxSpeed.array
           var scales = Nodes.geometry.attributes.scale.array;
           var color = new THREE.Color();
           var colors = Nodes.geometry.attributes.customColor.array;  
           var elapsedTime = clock.getElapsedTime()
 
-          RadiusG1Parameter =+ 50*Math.sin(elapsedTime/2);
-          RadiusG2Parameter =+ 50*Math.sin(4+elapsedTime);
-          RadiusG3Parameter =+ 50*Math.sin(7+elapsedTime/5);
 
           //console.log(RadiusG1Parameter)
         
           //settig up node 0
-          theta[0] = (360/nGroupsgTheta) +  Math.sin(countX)
-          phi[0] =  (360/nGroupsgPhi) +  Math.sin(countX)
-          scales[ 0 ] = 5
-          radius[0]= RadiusG1Parameter +  Math.sqrt(Math.pow(nodesDistancesX,2) + Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )  
-          positions[ 0] = radius[0]*Math.sin(theta[0])*Math.cos(phi[0]); // x
-          positions[1] = radius[1]*Math.sin(theta[1])*Math.sin(phi[1]); 
-          positions[2] = radius[2]*Math.cos(theta[2]); 
-          color.setHSL((  0.1*(Math.cos(elapsedTime)+0.1*(Math.sin(i/elapsedTime)))), 1,  0.5 );	
-          color.toArray( colors, 3 ); 
-        
-        //spherical coordinates of three groups       
-        
-        var slowdown = Math.sin(elapsedTime)*0.0000005
+
+
         //--------------------------------------------------------------------------g1
-              for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                theta[i] +=  i *(360/nGroupsgTheta) *slowdown*(Math.sin(countX) )
-                phi[i] +=   i*(360/nGroupsgPhi) *slowdown*(Math.cos(countX) )
-                scales[ i ] = 1.5+( Math.sin(i+ elapsedTime ));           
-                radius[i] =  RadiusG1Parameter+ slowdown* i* Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
-                 
-                 
-              }
-           
-              for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
-                theta[i] += 0.001+i * (360/nGroupsgTheta) * slowdown*(Math.sin(countX) )
-                phi[i] += i* (360/nGroupsgPhi) * slowdown*(Math.cos(countX) )
-                scales[ i ] = 1.7+( Math.sin(i+ elapsedTime));           
-                radius[i] =RadiusG2Parameter+ 0.0001*i*Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
-               
-
-              }
-              for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
-                theta[i] += i /2* (360/nGroupsgTheta) *slowdown*(Math.sin(countX) )
-                phi[i] +=  i/2* (360/nGroupsgPhi) *slowdown*(Math.cos(countX) )
-                scales[ i ] = 10.9+( Math.sin(i+ countX ));           
-                radius[i] = RadiusG3Parameter+ 0.00001*i*Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
-               
-
-              }
+     
           
           //cartesian positions from spherical coordinates
-        
-              for ( var i = 3; i < nNodes* nGroupsgTheta * 3 * nGroupsgPhi ; i +=3 ) {           
-                  positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                  positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                  positions[ i+2] = radius[i]*Math.cos(theta[i]);  
-                  color.setHSL(i/20000, 1,  0.5 );	
-                  color.toArray( colors, i * 3 );
+          for(var i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
+            
+            scales[ i ] = ( Math.sin( elapsedTime/i )  )*7;           
+          }
+              for ( var i = 3; i < nNodes* nGroupsgTheta * 3 * nGroupsgPhi ; i +=3 ) { 
+               // PVector desired = PVector.sub(target,location);
+               // desired.normalize();
+              //  desired.mult(maxspeed);
+                if (gravityON){
+                  accelerations[i]   += (attractor1x - positions[i])/accelerations[i] ;
+                  accelerations[i+1] += (attractor1y - positions[i+1])/accelerations[i+1] ;
+                  accelerations[i+2] += (attractor1z - positions[i+2])/accelerations[i+2] ;
+
+                }
+                else{
+                  accelerations[i] = 0.1 ;
+                  accelerations[i+1] = 0.1 ;
+                  accelerations[i+2] = 0.1 ;
+                }
+
+              speeds[i] += accelerations[i] 
+              speeds[i+1] += accelerations[i+1] 
+              speeds[i+2] += accelerations[i+2]  
+
+              //console.log(maxSpeeds)
+              positions[ i] += speeds[i]; 
+              positions[ i+1] += speeds[i+1]; 
+              positions[ i+2 ] += speeds[i+2]; 
+              
+    
+
+
+              //x dimension check
+              if(positions[i] >= boundaryBoxDimension  )
+                {
+                  positions[i] = boundaryBoxDimension
+                  speeds[i] *= -1 
+                } 
+              else if(positions[i] <= -boundaryBoxDimension  )
+              {
+                positions[i] = - boundaryBoxDimension
+                speeds[i] *= -1 
+              }                 
+              //y dimension check
+              if(positions[i+1] >= boundaryBoxDimension  )
+                {
+                  positions[i+1] = boundaryBoxDimension
+                  speeds[i+1] *= -1 
+                } 
+              else if(positions[i+1] <= -boundaryBoxDimension  )
+              {
+                positions[i+1] = - boundaryBoxDimension
+                speeds[i+1] *= -1 
+              }  
+              //z dimension check
+              if(positions[i+2] >= boundaryBoxDimension  )
+                {
+                  positions[i+2] = boundaryBoxDimension
+                  speeds[i+2] *= -1 
+                } 
+              else if(positions[i+2] <= -boundaryBoxDimension  )
+              {
+                positions[i+2] = - boundaryBoxDimension
+                speeds[i+2] *= -1 
+              } 
+
+
+
+              color.setHSL((  0.3), 1,  0.5 );	
+             color.toArray( colors, 3 );           
+                 
                    
               }   
+
+
+
       
          
         
@@ -288,7 +347,10 @@
           //countY += incrementY;
           //countZ += incrementZ; 
           //flag properties to be updated
+
           Nodes.geometry.attributes.position.needsUpdate = true;
+          Nodes.geometry.attributes.speed.needsUpdate = true;
+          Nodes.geometry.attributes.acceleration.needsUpdate = true;
           Nodes.geometry.attributes.scale.needsUpdate = true;
           Nodes.geometry.attributes.customColor.needsUpdate = true;
           renderer.render( scene, camera );

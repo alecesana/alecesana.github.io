@@ -60,10 +60,9 @@ body{
 .inLineHeaderContainer {
     width:50vw;
     display:flex;
-    position:sticky;
-    position: -webkit-sticky; /*add other browsers styles*/
+   
     z-index:3;
-    top:0;
+    
      
 }
 
