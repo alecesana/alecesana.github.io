@@ -92,6 +92,8 @@
           gui.add( effectController, "Speed2", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );     
         
           scene = new THREE.Scene();  
+          scene.background = new THREE.Color( 0xf5f5f5 );
+
           scene.add( camera_pivot );
 
           var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
@@ -120,8 +122,10 @@
               positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
               positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
               positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
-              color.setHSL( 0.01 * ( i/100 ), 1, 0.5 );					
-              color.toArray( colors, i * 3 );          
+              let colorAssigner = i<450?0.1:0.7;
+              color.setHSL( colorAssigner + 0.00001*i    , 1, 0.3 );					
+              color.toArray( colors, i  );   
+              //console.log(i)       
           }
         
           geometry = new THREE.BufferGeometry();  
@@ -207,7 +211,7 @@
           
           var positions = Nodes.geometry.attributes.position.array;
           var scales = Nodes.geometry.attributes.scale.array;
-          var color = Nodes.geometry.attributes.customColor.array;  
+          var colors = Nodes.geometry.attributes.customColor.array;  
           var elapsedTime = clock.getElapsedTime()
         
           RadiusG1Parameter += Math.sin(elapsedTime/2)
@@ -248,22 +252,31 @@
           
           //cartesian positions from spherical coordinates
         
-              for ( var i = 3; i < nNodes* nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
-                  positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                  positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                  positions[ i+2] = radius[i]*Math.cos(theta[i]);         
-              }   
+           
         
-              for ( var i =  nNodes * nGroupsgTheta *nGroupsgPhi; i < nNodes* nGroupsgTheta * 2* nGroupsgPhi ; i +=3 ) {           
+              for ( var i = 3; i < nNodes*3 * nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
                   positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
                   positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                  positions[ i+2] = radius[i]*Math.cos(theta[i]);             
-              }   
-        
-              for ( var i = nNodes* nGroupsgTheta * 2* nGroupsgPhi; i < nNodes*3 * nGroupsgTheta * nGroupsgPhi ; i +=3 ) {           
-                  positions[ i  ] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
-                  positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
-                  positions[ i+2] = radius[i]*Math.cos(theta[i]);           
+                  positions[ i+2] = radius[i]*Math.cos(theta[i]); 
+                  let colorAssigner;
+                 
+                  if(i <10000){
+                    colorAssigner = 0.3*0.1*Math.abs(Math.sin(elapsedTime)) + i*0.00002* Math.sin(elapsedTime/3)
+                  }
+                  else if( i >10000 && i<60000){
+                    colorAssigner = 0.2*0.1*Math.abs(Math.sin(elapsedTime)) + i*0.00002* Math.abs(Math.sin(elapsedTime/5))
+                  }
+
+                  else if( i >60000 && i<90000){
+                    colorAssigner = 0.8*0.1*Math.abs(Math.sin(elapsedTime)) + i*0.00002* Math.sin(elapsedTime/7)
+                  }
+
+                
+                  var color = new THREE.Color();
+
+                  color.setHSL( colorAssigner     , 0.8, 0.4 );					
+                  color.toArray( colors, i  );      
+                       
               }
         
           ///counters to move things around, should be replaced with real time as this relates movement to fps in a silly and ugly way https://threejs.org/docs/#api/en/core/Clock
