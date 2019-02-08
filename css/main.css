@@ -110,11 +110,71 @@ a{
     color:white;
     text-decoration:none;  
     font-size: 21px; 
-    
-    
 
-   
 }
+
+ 
+ .bar {
+   display: block;
+   height: 5px;
+   width: 45px;
+   background-color:whitesmoke;   
+   margin: 7px auto;
+ }
+ 
+ .con {
+    cursor: pointer;
+    display: inline-block;   
+  
+   -webkit-transition: all .7s ease;
+   -moz-transition: all .7s ease;
+   -ms-transition: all .7s ease;
+   -o-transition: all .7s ease;
+   transition: all .7s ease;
+ }
+
+.con:hover .bar,.special-con:hover .bar {
+  
+}
+ 
+ .col {
+   display: inline-block;
+   width: 20%;
+   text-align: center;
+   height: 40px;
+ }
+ 
+ .middle {
+   margin: 0 auto;
+ }
+ 
+ .bar {
+   -webkit-transition: all .7s ease;
+   -moz-transition: all .7s ease;
+   -ms-transition: all .7s ease;
+   -o-transition: all .7s ease;
+   transition: all .7s ease;
+ }
+ 
+ .activeT {
+   -webkit-transform: translateY(12px) rotateZ(45deg);
+   -moz-transform: translateY(15px) rotateZ(45deg);
+   -ms-transform: translateY(15px) rotateZ(45deg);
+   -o-transform: translateY(15px) rotateZ(45deg);
+   transform: translateY(12px) rotateZ(45deg);
+ }
+ 
+ .activeB {
+   -webkit-transform: translateY(-15px) rotateZ(-45deg);
+   -moz-transform: translateY(-15px) rotateZ(-45deg);
+   -ms-transform: translateY(-15px) rotateZ(-45deg);
+   -o-transform: translateY(-15px) rotateZ(-45deg);
+   transform: translateY(-12px) rotateZ(-45deg);
+ }
+ 
+ .activeM{
+   width: 0;
+ }
 
 .main-nav a:hover{
     color:darkorange;
@@ -497,7 +557,7 @@ canvas{
     #navElementsContainer{    
         display: flex;
         flex-direction:row;  
-        align-content:center;  
+        align-content:right;  
         margin-right:4vw;   
         }
 
@@ -505,6 +565,10 @@ canvas{
         width:85vw;
         margin:auto;
        
+    }
+
+    #navIcon{
+        display:none;
     }
     .main-nav {
         position:relative;

@@ -3,6 +3,10 @@
 {
 function navIconActivate(){ 
   $('.main-nav').toggleClass('active')
+  $('.top').toggleClass('activeT')
+  $('.bottom').toggleClass('activeB')
+  $('.middle').toggleClass('activeM')
+
 }
 
 function removeClickFunction(){
@@ -10,6 +14,10 @@ $('.main-nav a').off()
 //console.log('functionremoved') 
 if ($('.main-nav').hasClass('active')){
 $('.main-nav').toggleClass('active');
+$('.top').toggleClass('activeT')
+$('.bottom').toggleClass('activeB')
+$('.middle').toggleClass('activeM')
+
 console.log('classremoved')
 }
 }
@@ -23,7 +31,7 @@ if (mqList.matches) {
  
  } else {
  console.log("small window");
- $( '#navbar-icon').off().click(navIconActivate)
+ $( '.col').off().click(navIconActivate)
  $( ".main-nav a" ).off().click(navIconActivate) 
 
  }

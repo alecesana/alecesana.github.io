@@ -274,7 +274,7 @@
                 
                   var color = new THREE.Color();
 
-                  color.setHSL( colorAssigner     , 0.8, 0.4 );					
+                  color.setHSL( colorAssigner , 0.8, 0.4 );					
                   color.toArray( colors, i  );      
                        
               }
