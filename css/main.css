@@ -1,10 +1,5 @@
 
-*{
-    font-family: 'IBM Plex Sans', sans-serif;
-    
-    
-    
-}
+
 /*
 html {
     scroll-behavior: smooth;
@@ -35,8 +30,7 @@ body{
 }
 
 a{
-    color: #2f3030;
-    
+    color: #2f3030;    
 }
 
 .main-title{
@@ -49,12 +43,15 @@ a{
     border:0;
     padding: 0 0 0 0.5em;         
     font-size: 36px;    
-    font-weight:bolder;    
+    font-weight:bold;    
+    font-family: 'Habibi', serif;
+
    
 }
 .main-title a{
     text-decoration: none;
     color:white;
+
 }
 
 .inLineHeaderContainer {
@@ -110,6 +107,8 @@ a{
     color:white;
     text-decoration:none;  
     font-size: 21px; 
+    font-family: 'Kanit', sans-serif;
+
 
 }
 
@@ -219,6 +218,8 @@ p{
 }
 .container p{
     font-weight:normal;
+    font-family: 'Palanquin', sans-serif;
+
     
 }
 
@@ -227,7 +228,9 @@ p{
     text-align:left;
     font-weight: bold;
     color:black;
-    text-align: center;
+    text-align: left;
+    font-family: 'Habibi', serif;
+
     
 }
 
@@ -435,8 +438,8 @@ canvas{
     top: 70%;
     left: 1em;
     z-index: 1;
-    height:20vh;
-    text-align: left;
+    height:40vh;
+    text-align: center;
 
     
     }

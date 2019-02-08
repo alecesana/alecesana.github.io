@@ -228,25 +228,25 @@
           positions[2] = radius[2]*Math.cos(theta[2]); 
         
         //spherical coordinates of three groups
-        
+          
+
         //--------------------------------------------------------------------------g1
               for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) + Math.cos(countY/100000))
                 phi[i] =  i* (360/nGroupsgPhi) *0.1*(Math.sin(countX/100000) + Math.sin(countY/100000))
-                scales[ i ] = 1.5+( Math.sin(i+ countX ));           
+                scales[ i ] = (mqList.matches?1.5:5.5)+( Math.sin(i+ countX ));           
                 radius[i] = (Math.sin(countX/i) + Math.sin(countY/i)) * RadiusG1Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
               }
            
               for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) + Math.cos(countY/100000))
                 phi[i] =  i* (360/nGroupsgPhi) *0.1*(Math.sin(countX/100000) + Math.sin(countY/100000))
-                scales[ i ] = 1.7+( Math.sin(i+ countX ));           
+                          
                 radius[i] =(Math.sin(countX/i) + Math.sin(countY/i))* RadiusG2Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
               }
               for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) - Math.cos(countY/100000))
                 phi[i] =  i* (360/nGroupsgPhi) *0.1*(Math.sin(countX/100000) - Math.sin(countY/100000))
-                scales[ i ] = 1.9+( Math.sin(i+ countX ));           
                 radius[i] = (Math.sin(countX/i) + Math.sin(countY/i))*RadiusG3Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
               }
           
