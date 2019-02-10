@@ -6,7 +6,8 @@
         var nGroupsgPhi = 30  ///aka groups shifted on phi angle    
         let gTheta =30, gPhi = 30
         var clock = new THREE.Clock();
-    
+        var colourTimer = 3;
+        var sw = false;
         //addons to use spherical coordinates
         let radius = [nNodes*nGroupsgTheta*nGroupsgPhi]
         var RadiusG1Parameter = 60, RadiusG2Parameter = 120, RadiusG3Parameter= 180
@@ -83,8 +84,8 @@
           }
         
           var gui = new dat.GUI({ autoPlace: false });
-          var guiContainer = document.getElementById('gui-container1');
-          guiContainer.appendChild(gui.domElement);
+          //var guiContainer = document.getElementById('gui-container1');
+          //guiContainer.appendChild(gui.domElement);
         //adding parameters to gui
         
           gui.add( effectController, "GeneralDistances", 0, 100.0, 1 ).onChange( valuesChanger );       
@@ -205,6 +206,7 @@
           //stats.update();
           //controls.update();
           render();
+          //console.log("wtf")
         }
         
         function render() {    
@@ -213,7 +215,8 @@
           var scales = Nodes.geometry.attributes.scale.array;
           var colors = Nodes.geometry.attributes.customColor.array;  
           var elapsedTime = clock.getElapsedTime()
-        
+          //console.log(clock.getElapsedTime())
+
           RadiusG1Parameter += Math.sin(elapsedTime/2)
           RadiusG2Parameter += Math.sin(elapsedTime/5)
           RadiusG3Parameter += Math.sin(elapsedTime)
@@ -234,7 +237,7 @@
               for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) + Math.cos(countY/100000))
                 phi[i] =  i* (360/nGroupsgPhi) *0.1*(Math.sin(countX/100000) + Math.sin(countY/100000))
-                scales[ i ] = (mqList.matches?1.5:5.5)+( Math.sin(i+ countX ));           
+                scales[ i ] = (mqList.matches?0.9:3.5)+( Math.sin(i+ countX ));           
                 radius[i] = (Math.sin(countX/i) + Math.sin(countY/i)) * RadiusG1Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
               }
            
@@ -278,7 +281,25 @@
                   color.toArray( colors, i  );      
                        
               }
-        
+          
+          if (elapsedTime - colourTimer >= 3){
+            //console.log("5s past")
+            
+            if(sw == false){
+          incrementX = Math.random(-0.00001, 0.00001)*0.1
+          sw = !sw
+          //console.log("speed1")
+            }
+            else{
+          incrementY = Math.random(-0.00001, 0.00001)*0.1
+          sw = !sw
+          //console.log("speed2")
+
+            }
+
+          //reset timer
+          colourTimer = elapsedTime
+          }
           ///counters to move things around, should be replaced with real time as this relates movement to fps in a silly and ugly way https://threejs.org/docs/#api/en/core/Clock
           countX += incrementX;
           countY += incrementY;

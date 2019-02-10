@@ -33,29 +33,47 @@ a{
     color: #2f3030;    
 }
 
-.main-title{
-    display: flex;
-    width:20vw;
-    height:45px;
-    text-align:left;
-    color:white;
-    margin:0 0 3em 0;    
-    border:0;
-    padding: 0 0 0 0.5em;         
-    font-size: 36px;    
-    font-weight:bold;    
+
+
+.front-container{
+     /* center dynamically*/
+    
+    position:absolute;
+    z-index:1;
+    width:90vw;
+  
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     font-family: 'Habibi', serif;
+    text-align:center;
+
+    
+
+    
+}
+.front-container h1{
+    font-size: 65px;    
+    font-weight:bold;
+    margin:0 auto;
 
    
 }
+
+.front-container h2{
+    font-size:40px;
+}
+
+
 .main-title a{
     text-decoration: none;
-    color:white;
+    color:Black;
 
 }
 
 .inLineHeaderContainer {
-    width:80vw;
+    width:100vw;
+    
      
 }
 
@@ -65,14 +83,9 @@ a{
     align-items: flex-end;      
     }
 
-.navbar-toggle {        
-    text-align:center;
-    text-justify: center;    
-    cursor: pointer;     
-    font-size: 36px;
-    width:30%;    
-    padding-top:2.5px;
-   
+.navIcon{
+    align-self:right;
+    
 }
     
 
@@ -95,7 +108,7 @@ a{
     -moz-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
     -ms-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
      -o-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
-    transition: all 500ms cubic-bezier(0.675, 0.675, 0.645, 0.795);
+    transition: all 200ms cubic-bezier(0.675, 0.675, 0.645, 0.795);
     overflow:hidden;  
     }
 
@@ -107,7 +120,7 @@ a{
     color:white;
     text-decoration:none;  
     font-size: 21px; 
-    font-family: 'Kanit', sans-serif;
+    font-family: 'Habibi', serif;
 
 
 }
@@ -121,16 +134,7 @@ a{
    margin: 7px auto;
  }
  
- .con {
-    cursor: pointer;
-    display: inline-block;   
-  
-   -webkit-transition: all .7s ease;
-   -moz-transition: all .7s ease;
-   -ms-transition: all .7s ease;
-   -o-transition: all .7s ease;
-   transition: all .7s ease;
- }
+
 
 .con:hover .bar,.special-con:hover .bar {
   
@@ -141,6 +145,15 @@ a{
    width: 20%;
    text-align: center;
    height: 40px;
+
+   cursor: pointer;
+   display: inline-block;   
+ 
+  -webkit-transition: all .7s ease;
+  -moz-transition: all .7s ease;
+  -ms-transition: all .7s ease;
+  -o-transition: all .7s ease;
+  transition: all .7s ease;
  }
  
  .middle {
@@ -209,9 +222,7 @@ a{
     background-color: whitesmoke;
 }
 
-.container h1{
-    font-size: 3em;
-}
+
 
 p{
     line-height: 30px;
@@ -219,7 +230,6 @@ p{
 .container p{
     font-weight:normal;
     font-family: 'Palanquin', sans-serif;
-
     
 }
 
@@ -230,7 +240,6 @@ p{
     color:black;
     text-align: left;
     font-family: 'Habibi', serif;
-
     
 }
 
@@ -303,10 +312,13 @@ section a{
    text-align:center;
    align-content: center;
    margin:0;
+   font-family: 'Habibi', serif;
   
 }
 
-
+a{
+    font-family: 'Palanquin', serif;
+}
 
 .p-icon{
     height:25px;
@@ -417,14 +429,17 @@ canvas{
 #threejsBiggercontainer1 , #threejsBiggercontainer2, #threejsBiggercontainer3{
     z-index:0;
     display: flex;
-    flex-direction:column;       
-    
+    flex-direction:column;   
+    text-align: center;     
 
 }
 
 #threejscontainer1 ,#threejscontainer2, #threejscontainer3{
     
     position: relative;
+    text-align: center;
+    text-justify: center;
+
     
 }
 #symmetrycontainer1, #threejscontainer2 , #threejscontainer3{
@@ -511,6 +526,7 @@ canvas{
     height:1em;
 }
 
+
 .iframe-container-169 {
     overflow: hidden;
     padding-top: 71.25%;
@@ -546,14 +562,13 @@ canvas{
  
 
     /*desktop settings*/
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 770px) {
     
     
     .inLineHeaderContainer {
         height:100%;
-        width:80vw;
         display:flex;
-        margin-right:5vw;
+        margin: 0 auto;
          
     }
 
@@ -565,8 +580,10 @@ canvas{
         }
 
     #navContainer{
-        width:85vw;
+        width:100vw;
         margin:auto;
+        font-family: 'Habibi', serif;
+
        
     }
 
@@ -579,7 +596,7 @@ canvas{
         display: flex;
         margin-right:4vw;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: center;
         height:auto;
     }
 

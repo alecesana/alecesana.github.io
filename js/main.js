@@ -1,12 +1,12 @@
 
 //var windowsize =  $(window).width();
-{
+
 function navIconActivate(){ 
   $('.main-nav').toggleClass('active')
   $('.top').toggleClass('activeT')
   $('.bottom').toggleClass('activeB')
   $('.middle').toggleClass('activeM')
-
+  console.log("click")
 }
 
 function removeClickFunction(){
@@ -26,12 +26,13 @@ var mqList = window.matchMedia( "(min-width: 770px)" );
 mqList.addListener(mediaChange);
 
 function mediaChange(mqList){
+  console.log("matches")
 if (mqList.matches) {
  removeClickFunction();
  
  } else {
  console.log("small window");
- $( '.col').off().click(navIconActivate)
+ $( '#navIcon').off().click(navIconActivate)
  $( ".main-nav a" ).off().click(navIconActivate) 
 
  }
@@ -53,4 +54,4 @@ $(".scroll").on('click', function(event) {
  mediaChange(mqList);  
  
 
-}
+
