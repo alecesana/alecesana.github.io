@@ -8,6 +8,44 @@
         var clock = new THREE.Clock();
         var colourTimer = 3;
         var sw = false;
+
+        var target
+        var increment = 0.0001
+        function smoothTargetSpeedChange(toSmoothen){
+          
+          target =  Math.random(-0.001, 0.001)
+          increment += target + (increment - target)
+          toSmoothen += increment
+          
+          if (increment = target){
+            return
+          }
+          
+        }
+        function onContainerClick(){
+          
+          if(sw == false){
+            incrementX = Math.random(-0.00001, 0.00001)
+            sw = !sw
+            //console.log("speed1")
+              }
+              else{
+            incrementY = Math.random(-0.00001, 0.00001)
+            sw = !sw
+            //console.log("speed2")
+  
+              }
+
+
+              // to smoothen up use linear interpolation perhaps? https://en.wikipedia.org/wiki/Linear_interpolation
+              
+            // console.log("click")
+
+            //  smoothTargetSpeedChange(incrementX)
+
+        }
+      
+    
         //addons to use spherical coordinates
         let radius = [nNodes*nGroupsgTheta*nGroupsgPhi]
         var RadiusG1Parameter = 60, RadiusG2Parameter = 120, RadiusG3Parameter= 180
@@ -97,6 +135,8 @@
 
           scene.add( camera_pivot );
 
+
+
           var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
           var scales = new Float32Array( nNodes * nGroupsgTheta*nGroupsgPhi);
           var colors = new Float32Array( nNodes*nGroupsgTheta*nGroupsgPhi * 3 );
@@ -171,6 +211,8 @@
           document.addEventListener( 'touchstart', onDocumentTouchStart, false );
           document.addEventListener( 'touchmove', onDocumentTouchMove, false );
           window.addEventListener( 'resize', onWindowResize, false );
+          window.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
         }
         function onWindowResize() {
           camera.aspect = window.innerWidth / window.innerHeight;
@@ -197,6 +239,12 @@
             mouseX = event.touches[ 0 ].pageX - windowHalfX;
             mouseY = event.touches[ 0 ].pageY - windowHalfY;
           }
+         
+        }
+
+
+        function onDocumentMouseDown( event){
+          onContainerClick()
         }
         //-----------------------------------------------------------------------/main animate loop
         function animate() {
@@ -281,8 +329,8 @@
                   color.toArray( colors, i  );      
                        
               }
-          
-          if (elapsedTime - colourTimer >= 3){
+          ///rotation randomizer
+          if (elapsedTime - colourTimer >= 1){
             //console.log("5s past")
             
             if(sw == false){
@@ -300,10 +348,17 @@
           //reset timer
           colourTimer = elapsedTime
           }
+
+          //click/tap on screen trigger
+
+          
+          
           ///counters to move things around, should be replaced with real time as this relates movement to fps in a silly and ugly way https://threejs.org/docs/#api/en/core/Clock
           countX += incrementX;
           countY += incrementY;
           countZ += incrementZ; 
+
+          
           //flag properties to be updated
           Nodes.geometry.attributes.position.needsUpdate = true;
           Nodes.geometry.attributes.scale.needsUpdate = true;

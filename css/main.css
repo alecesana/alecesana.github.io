@@ -91,7 +91,7 @@ a{
 
 #navContainer{      
     background-color:black; 
-    width:38vw;
+    width:35vw;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -110,19 +110,23 @@ a{
      -o-transition: all 500ms cubic-bezier(0.675, 0.170, 0.245, 0.795); 
     transition: all 200ms cubic-bezier(0.675, 0.675, 0.645, 0.795);
     overflow:hidden;  
+    text-align:left;
+    width:30vw;
     }
 
-.active {
-    height:200px;   /*todo: make it number of elements in  using js*/  
-    }
+
    
 .main-nav a{
     color:white;
     text-decoration:none;  
     font-size: 21px; 
-    font-family: 'Habibi', serif;
+    font-family: 'Chivo', sans-serif;
 
 
+}
+
+.main-nav li{
+    padding-left:8px;
 }
 
  
@@ -134,7 +138,9 @@ a{
    margin: 7px auto;
  }
  
-
+ .active {
+    height:200px;   /*todo: make it number of elements in  using js*/  
+    }
 
 .con:hover .bar,.special-con:hover .bar {
   
@@ -218,6 +224,7 @@ a{
     width:100%;
     padding:0;
     
+    
        
     background-color: whitesmoke;
 }
@@ -247,29 +254,32 @@ p{
 .section-list-long    {  
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
+    font-family: 'Palanquin', sans-serif;
 
     
 }
 
 .section-list  {  
+    width:100%;
+    margin:0 auto;
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
-
+    text-align: center;
+    font-family: 'Palanquin', sans-serif;
     
 }
 
 .section-list li{
-    font-weight: bold;
+    font-size:1.3em;
     padding:2px 0 2px 0;
-    margin:auto;
-    text-align: center;
+    
+    
 }
 
 .section-list-long li{
-    font-weight: bold;
-    font-size:1.3em;
-    padding:2px 0 2px 0;
-   
+    font-weight: bolder;
+    font-size:1.6em;
+    
 }
 
 section a{
@@ -283,18 +293,21 @@ section a{
 .centeredParagraph{
     font-size: 1.3em;
     text-align:center;
+    font-family: 'Palanquin', sans-serif;
 
 }
 .links-list{
     font-size:1.3em;
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
+    font-family: 'Palanquin', sans-serif;
 }
 
 .links-list li{
     font-weight: bold;
     padding:2px 0 2px 0;
     margin:0;
+    font-family: 'Palanquin', sans-serif;
 }
 
 
@@ -315,6 +328,8 @@ section a{
    font-family: 'Habibi', serif;
   
 }
+
+
 
 a{
     font-family: 'Palanquin', serif;
@@ -494,7 +509,6 @@ canvas{
 
 
 
-
 @keyframes bounce {
     0%, 100% {
       transform: translate(0, 0);
@@ -558,6 +572,19 @@ canvas{
 }
 
 
+.come-in {
+    transform: translateY(10vh);
+    animation: come-in 0.8s ease forwards;
+  }
+  .come-in:nth-child(odd) {
+    animation-duration: 0.6s; /* So they look staggered */
+  }
+  
+  @keyframes come-in {
+    to { transform: translateY(0); }
+  }
+
+
 
  
 
@@ -582,7 +609,6 @@ canvas{
     #navContainer{
         width:100vw;
         margin:auto;
-        font-family: 'Habibi', serif;
 
        
     }
@@ -671,9 +697,7 @@ canvas{
             text-align: left;
 
         }
-    .section-list li{
-        text-align: left;
-    }
+    
 
     .sectionparagraph{
         font-size: 1.3em;
