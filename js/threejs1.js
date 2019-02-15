@@ -63,6 +63,8 @@
         let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
         let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
         var incrementX = 0.001, incrementY = 0.001, incrementZ = 0.001;
+
+        ///
         var Nodes, countX = 1000, countY = -3000, countZ = 0;
         
         var mouseX = 0, mouseY = 0;
@@ -267,7 +269,7 @@
 
           RadiusG1Parameter += Math.sin(elapsedTime/2)
           RadiusG2Parameter += Math.sin(elapsedTime/5)
-          RadiusG3Parameter += Math.sin(elapsedTime)
+          RadiusG3Parameter += Math.sin(elapsedTime/10)
         
           //settig up node 0
           theta[0] = (360/nGroupsgTheta) +  Math.sin(countX)
@@ -293,7 +295,7 @@
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) + Math.cos(countY/100000))
                 phi[i] =  i* (360/nGroupsgPhi) *0.1*(Math.sin(countX/100000) + Math.sin(countY/100000))
                           
-                radius[i] =(Math.sin(countX/i) + Math.sin(countY/i))* RadiusG2Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
+                radius[i] =(Math.sin(countZ/i) + Math.sin(countY/i))* RadiusG2Parameter+ Math.sqrt(Math.pow(nodesDistancesX,2) +  Math.pow(nodesDistancesY,2) + Math.pow(nodesDistancesZ,2) )     
               }
               for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
                 theta[i] = i * (360/nGroupsgTheta) * 0.1*(Math.sin(countX/100000) - Math.cos(countY/100000))
@@ -342,7 +344,7 @@
           incrementY = Math.random(-0.00001, 0.00001)*0.1
           sw = !sw
           //console.log("speed2")
-
+              
             }
 
           //reset timer
