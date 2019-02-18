@@ -66,7 +66,7 @@
     <footer class ="main-footer" id = "footer">
 
       <div class = "c">
-      <i class="far fa-copyright"></i> Alessandro Cesana 2018 <a  href="mailto:cesaless@gmail.com"><i class="fas fa-envelope "> </i></a>
+      <i class="far fa-copyright"></i> Alessandro Cesana 2019 <a  href="mailto:cesaless@gmail.com"><i class="fas fa-envelope "> </i></a>
       
       <a href = "https://www.instagram.com/alecesana"><i class="fab fa-instagram icon-3x"></i></a>
       </div>
@@ -134,7 +134,7 @@
               let groupsRotationX = 1, groupsRotationY = 1, groupsRotationZ =1;    
               let nodesRotationX = 1, nodesRotationY = 1, nodesRotationZ =1;    
               var increment1 = 0.001, increment2 = 0.001, increment3 = 0.001, increment4 = 0.001, increment5 = 0.001, increment6 = 0.001;
-              var Nodes, count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count6 = 0
+              var Nodes, count1 = 10000, count2 = 5000, count3 = 0, count4 = 0, count5 = 0, count6 = 0
               var phiSpread = 0.01, thetaSpread = 0.01
               
               var mouseX = 0, mouseY = 0;
@@ -159,8 +159,9 @@
                
                var container = document.getElementById("symmetryContainer3")
                 camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 100000000 );
-                camera.position.z = 500; 
-                camera.position.y = -900;     
+                                    
+                camera.position.z = 100; 
+
                 
                 ///define set of parameters of gui
                 var effectController = {            
@@ -211,6 +212,8 @@
                // gui.add( effectController, "Speed6", -0.25, 0.25, 0.000001 ).onChange( valuesChanger );     
               
                 scene = new THREE.Scene();  
+               // scene.background = new THREE.Color( 0xf5f5f5 );
+
                 var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
                 var scales = new Float32Array( nNodes * nGroupsgTheta*nGroupsgPhi);
                 var colors = new Float32Array( nNodes*nGroupsgTheta*nGroupsgPhi * 3 );
@@ -237,7 +240,7 @@
                     positions[ i] = radius[i]*Math.sin(theta[i])*Math.cos(phi[i]); 
                     positions[ i+1] = radius[i]*Math.sin(theta[i])*Math.sin(phi[i]); 
                     positions[ i+2 ] = radius[i]*Math.cos(theta[i]);
-                    color.setHSL( 0.001 * ( i ), 0.5, 0.5 );					
+                    color.setHSL( 0.001 * ( i ), 0.5, 1 );					
                     color.toArray( colors, i * 3 );          
                 }
               
@@ -346,9 +349,9 @@
                     for(let i=1; i < nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                       theta[i] = i*(360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) * phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.5+( Math.sin(i+ count4 ));           
+                      scales[ i ] = (mqList.matches?2.9:10.5)+( Math.sin(i+ count1 ));           
                       radius[i] = 0.05*i+(Math.sin(count1/i)) * RadiusG1Parameter+ generalRadius * 5 
-                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/300), 1, 0.5 );	
+                      color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/300), 1, 0.3 );	
                         color.toArray( colors, i * 3 ); 
                       
                           
@@ -357,7 +360,6 @@
                     for(let i=nNodes * nGroupsgTheta * nGroupsgPhi/3; i < 2*nNodes * nGroupsgTheta * nGroupsgPhi/3;i++){
                       theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.7+( Math.sin(i+ count4 ));           
                       radius[i] =i*0.05 + (Math.sin(count1/i))* RadiusG1Parameter+ generalRadius *5   
                         
                     }
@@ -365,7 +367,6 @@
                     for(let i=2*nNodes * nGroupsgTheta * nGroupsgPhi/3; i < nNodes * nGroupsgTheta * nGroupsgPhi;i++){
                       theta[i] = i * (360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) *phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.9+( Math.sin(i+ count4 ));           
                       radius[i] = i*0.05+ (Math.sin(count1/i))*RadiusG1Parameter+ generalRadius * 5   
                        
                     }

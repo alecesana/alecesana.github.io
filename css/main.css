@@ -463,6 +463,7 @@ canvas{
 #symmetrycontainer1, #threejscontainer2 , #threejscontainer3{
     
     position:relative;
+    background-color: black;
     
 }
 

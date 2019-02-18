@@ -246,9 +246,7 @@
                // gui.add( effectController, "shiftZ", -3000, 3000, 1 ).onChange( valuesChanger );
                 gui.add( effectController, "controllableGroups", 1 , 30, 1 ).onChange( valuesChanger );
 
-                gui.add( effectController, "Speed4", -3, 3, 0.000001 ).onChange( valuesChanger );
-                gui.add( effectController, "Speed5", -3, 3, 0.000001 ).onChange( valuesChanger );
-               gui.add( effectController, "Speed6", -3, 3, 0.000001 ).onChange( valuesChanger );     
+                 
               
                 scene = new THREE.Scene();  
                 var positions = new Float32Array( nNodes * 3 *nGroupsgTheta*nGroupsgPhi );
@@ -434,7 +432,7 @@
                     for(var i=(gI-1)*nGrains/controllableGroups; i < gI * nGrains/controllableGroups;i++){
                       theta[i] = i*(360/nGroupsgTheta) * thetaSpread*(Math.sin(count1/100000) + Math.cos(count2/100000))
                       phi[i] =  i* (360/nGroupsgPhi) * phiSpread*(Math.sin(count1/100000) + Math.sin(count2/100000))
-                      scales[ i ] = 4.5+( Math.sin(i+ count4 ));           
+                      scales[ i ] = (mqList.matches?2.9:10.5)+( Math.sin(i+ count1 ));           
                       radius[i] = 0.05+(Math.sin(count1)) * groupRadius[gI] + generalRadius * 5 
                       color.setHSL( 0.05 *( i )*(0.001+Math.abs(timeOscillator)/300), 1, 0.5 );	
                       color.toArray( colors, i * 3 );            
