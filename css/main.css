@@ -441,7 +441,7 @@ form{
 
 canvas{
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 
 #threejsBiggercontainer1 , #threejsBiggercontainer2, #threejsBiggercontainer3{
@@ -449,7 +449,7 @@ canvas{
     display: flex;
     flex-direction:column;   
     text-align: center;     
-
+    height:80%;
 }
 
 #threejscontainer1 ,#threejscontainer2, #threejscontainer3{

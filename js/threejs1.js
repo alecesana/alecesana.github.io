@@ -22,15 +22,16 @@
           }
           
         }
+
         function onContainerClick(){
           
           if(sw == false){
-            incrementX = Math.random(-0.00001, 0.00001)
+            incrementX = Math.random(-0.000001, 0.000001)
             sw = !sw
             //console.log("speed1")
               }
               else{
-            incrementY = Math.random(-0.00001, 0.00001)
+            incrementY = Math.random(-0.000001, 0.000001)
             sw = !sw
             //console.log("speed2")
   
@@ -336,12 +337,12 @@
             //console.log("5s past")
             
             if(sw == false){
-          incrementX = Math.random(-0.00001, 0.00001)*0.1
+          incrementX = Math.random(-0.00001, 0.00001)*0.01
           sw = !sw
           //console.log("speed1")
             }
             else{
-          incrementY = Math.random(-0.00001, 0.00001)*0.1
+          incrementY = Math.random(-0.00001, 0.00001)*0.01
           sw = !sw
           //console.log("speed2")
               
