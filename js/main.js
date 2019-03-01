@@ -26,12 +26,12 @@ var mqList = window.matchMedia( "(min-width: 770px)" );
 mqList.addListener(mediaChange);
 
 function mediaChange(mqList){
-  console.log("matches")
+  //console.log("matches")
 if (mqList.matches) {
  removeClickFunction();
  
  } else {
- console.log("small window");
+ //console.log("small window");
  $( '#navIcon').off().click(navIconActivate)
  $( ".main-nav a" ).off().click(navIconActivate) 
 

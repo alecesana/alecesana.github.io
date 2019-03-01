@@ -214,7 +214,7 @@
           document.addEventListener( 'touchstart', onDocumentTouchStart, false );
           document.addEventListener( 'touchmove', onDocumentTouchMove, false );
           window.addEventListener( 'resize', onWindowResize, false );
-          window.addEventListener( 'mousedown', onDocumentMouseDown, false );
+          container.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
         }
         function onWindowResize() {
