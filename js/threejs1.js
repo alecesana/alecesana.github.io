@@ -26,12 +26,14 @@
         function onContainerClick(){
           
           if(sw == false){
-            incrementX = Math.random(-0.000001, 0.000001)
+            //incrementX = Math.random(-0.000001, 0.000001)
+            incrementX = Math.random() * (0.5)
+
             sw = !sw
             //console.log("speed1")
               }
               else{
-            incrementY = Math.random(-0.000001, 0.000001)
+            incrementY = Math.random() * (0.5)
             sw = !sw
             //console.log("speed2")
   
@@ -188,6 +190,7 @@
           scene.add( Nodes );
           renderer = new THREE.WebGLRenderer( { antialias: true } );
           renderer.setPixelRatio(window.devicePixelRatio );
+          
           //renderer.setSize( container.innerWidth, container.innerHeight );
           renderer.setSize(  window.innerWidth, window.innerHeight  );
     
@@ -213,10 +216,17 @@
           document.addEventListener( 'mousemove', onDocumentMouseMove, false );
           document.addEventListener( 'touchstart', onDocumentTouchStart, false );
           document.addEventListener( 'touchmove', onDocumentTouchMove, false );
-          window.addEventListener( 'resize', onWindowResize, false );
-          window.addEventListener( 'mousedown', onDocumentMouseDown, false );
-
+         // document.addEventListener( 'resize', onWindowResize, false );
+          container.addEventListener( 'mousedown', onDocumentMouseDown, false );
+          //window.addEventListener("orientationchange", swapDimensions, false);
         }
+
+        window.onresize = function () {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize( window.innerWidth, window.innerHeight );
+        };
+        /*
         function onWindowResize() {
           camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -224,6 +234,8 @@
                 //controls.handleResize();
                 render();
         }
+*/
+     
         
         function onDocumentMouseMove( event ) {
           mouseX = event.clientX - windowHalfX;

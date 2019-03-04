@@ -13,6 +13,10 @@ body{
     color: #2f3030;
 
 }
+canvas{
+    margin:0;
+    padding:0;
+}
 
 .main-header{
     display:flex;
@@ -26,7 +30,7 @@ body{
     height:45px;
     margin:0;
    color:white;
-   background-color:black; 
+   background-color:#2f3030; 
 }
 
 a{
@@ -54,7 +58,7 @@ a{
 }
 .front-container h1{
     font-size: 65px;    
-    font-weight:bold;
+    font-weight:lighter;
     margin:0 auto;
 
    
@@ -92,7 +96,7 @@ a{
     
 
 #navContainer{      
-    background-color:black; 
+    background-color:#2f3030; 
     width:35vw;
     display: flex;
     flex-direction: column;
@@ -118,12 +122,12 @@ a{
 
 
    
-.main-nav a{
+.main-nav li a{
     color:white;
     text-decoration:none;  
-    font-size: 21px; 
-    font-weight:lighter;
+    font-size: 19px; 
     font-family: 'Chivo', sans-serif;
+    font-weight: 100;
 
 
 }
@@ -197,7 +201,7 @@ a{
    width: 0;
  }
 
-.main-nav a:hover{
+.main-nav li a:hover{
     color:darkorange;
     -o-transition:.5s;
     -ms-transition:.5s;
@@ -275,6 +279,7 @@ p{
 .section-list li{
     font-size:1.3em;
     padding:2px 0 2px 0;
+    font-weight:bolder;
     
     
 }
@@ -291,6 +296,7 @@ section a{
 
 .sectionparagraph{
     font-size: 1.3em;
+    line-height: 1px;
 
 }
 .centeredParagraph{
@@ -321,7 +327,7 @@ section a{
 }
 
 .main-footer{
-    background-color: black;
+    background-color: #2f3030;
     height:auto;
    /* background-size:cover;*/
    padding:10px;
@@ -429,10 +435,13 @@ form{
 }
 
 .c{
+    color:whitesmoke;
+
     margin:auto;
 }
 
 .c a{
+    color:whitesmoke;
     padding:5px;
 }
 .c a:last-child{
@@ -464,6 +473,8 @@ canvas{
     
     position:relative;
     background-color: black;
+    padding:0;
+    margin:0 auto;
     
 }
 
