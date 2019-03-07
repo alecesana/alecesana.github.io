@@ -22,7 +22,7 @@ console.log('classremoved')
 }
 }
 
-var mqList = window.matchMedia( "(min-width: 770px)" );  
+var mqList = window.matchMedia( "(min-width: 870px)" );  
 mqList.addListener(mediaChange);
 
 function mediaChange(mqList){
