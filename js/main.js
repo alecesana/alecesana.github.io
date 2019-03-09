@@ -91,7 +91,9 @@ $(window).scroll(function(event) {
 });
 */
 
-
+function resizeIframe(obj) {
+  obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+}
   
  mediaChange(mqList);  
  
