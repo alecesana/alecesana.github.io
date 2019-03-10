@@ -380,7 +380,7 @@ justify-content:center;
 
 label {
     font-size:12px;	
-    width: 35vw;
+    width: 35%;
     padding:2px 0 2px 0;
 }
 
@@ -389,16 +389,17 @@ select{
     border:none;
 }
 input{
-    font-size:14px;
+    font-size:18px;
     border:none;
 }
+
 textarea{
     border:none;
 }
 
 form{
-    width:45vw;
-    transition: background-color 2.5s ease;
+    width:100%;
+    text-align:left;
 }
 
 .content-section{
@@ -595,6 +596,7 @@ iframe{
   }
   form{
       margin:0 auto;
+      width:50%;
       border:solid 1px grey;
     background:whitesmoke;
     line-height: 25px;
@@ -612,7 +614,7 @@ iframe{
   
 
   label {
-    float: left;
+    display: inline-block;
       text-align: right;
       margin-right: 15px;
       width: 150px;
@@ -726,22 +728,9 @@ iframe{
     }
 
 
-    label {
-        font-size:12px;
-        float: left;
-        text-align: right;
-        margin-right: 15px;
-        width: 130px;
-    }
+ 
     
-    select{ 
-        float: left;
-        text-align: right;
-        margin-right: 15px;
-        width: 130px;
-        border:none;
     
-    }
     .scrollButtons{
         display:flex;
         flex-direction:column;
@@ -825,7 +814,9 @@ iframe{
     }
     
   
-    
+    .checkboxListItem{
+        width:30%;
+    }
     
     
    
