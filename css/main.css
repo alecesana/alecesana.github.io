@@ -61,6 +61,8 @@ a{
     font-size: 65px;    
     font-weight:300;
     font-family: 'Habibi', serif;
+    text-shadow: whitesmoke 1px 1px;
+
 
 
    
@@ -670,7 +672,8 @@ iframe{
         font-family: 'Habibi', serif;
         display:block;
         margin: 2% auto auto 2%;
-       
+        color:#2f3030;
+        text-shadow: whitesmoke 2px 2px;
         padding-left:2%;
        
     }
