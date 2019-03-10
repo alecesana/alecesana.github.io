@@ -11,6 +11,7 @@ body{
     padding:0;
     overflow-x: hidden;
     color: #2f3030;
+    
 
 }
 blockquote{
@@ -236,9 +237,7 @@ a{
 
 
 
-p{
-    line-height: 30px;
-}
+
 .container p{
     font-weight:normal;
     font-family: 'Palanquin', sans-serif;
@@ -246,12 +245,15 @@ p{
 }
 
 .section-header{
+    width:30%;
     font-size: 2em;
     text-align:left;
-    font-weight: bold;
-    color:black;
+    padding-left:2%;
+    font-weight: lighter;
+    color:whitesmoke;
     text-align: left;
     font-family: 'Habibi', serif;
+    background-color:#2f3030;
     
 }
 
@@ -294,7 +296,7 @@ section a{
 
 .sectionparagraph{
     font-size: 1.3em;
-    line-height: 1px;
+    line-height: 10px;
 
 }
 .centeredParagraph{
@@ -411,7 +413,7 @@ form{
    
 .container p{
 font-weight:normal;
-line-height: 22px;
+line-height: 32px;
 
 
 }
@@ -462,7 +464,7 @@ canvas{
 #symmetrycontainer1, #threejscontainer2 , #threejscontainer3{
     
     position:relative;
-    background-color: black;
+    background-color: whitesmoke;
     padding:0;
     margin:0 auto;
     
@@ -567,16 +569,28 @@ iframe{
    
 }
 
-.come-in {
-    transform: translateY(10vh);
-    animation: come-in 0.8s ease forwards;
+.come-in-bottom {
+    transform: translateY(18vh);
+    animation: come-in-bottom 0.8s ease forwards;
   }
-  .come-in:nth-child(odd) {
+  .come-in-bottom:nth-child(odd) {
     animation-duration: 0.6s; /* So they look staggered */
   }
   
-  @keyframes come-in {
+  @keyframes come-in-bottom  {
     to { transform: translateY(0); }
+  }
+
+  .come-in-left {
+    transform: translateX(-48vw);
+    animation: come-in-left 0.8s ease forwards;
+  }
+  .come-in-left:nth-child(odd) {
+    animation-duration: 0.6s; /* So they look staggered */
+  }
+  
+  @keyframes come-in-left  {
+    to { transform: translateX(0); }
   }
 
 
@@ -655,6 +669,8 @@ iframe{
         display:block;
         margin: 2% auto auto 2%;
        
+        padding-left:2%;
+       
     }
     
     .front-container h2{
@@ -668,7 +684,7 @@ iframe{
         display: flex;
         flex-direction:row;  
         align-content:right;  
-        margin-right:4vw;   
+        margin: 0 4vw 0 0;   
         }
 
     #navContainer{

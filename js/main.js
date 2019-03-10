@@ -48,7 +48,7 @@ $(".scroll").on('click', function(event) {
    scrollTop: $(hash).offset().top -50}, 500)        
 });
 }
-/*
+
 (function($) {
 
   /**
@@ -60,7 +60,7 @@ $(".scroll").on('click', function(event) {
    * @desc A small plugin that checks whether elements are within
    *     the user visible viewport of a web browser.
    *     only accounts for vertical position, not horizontal.
-   
+   */
 
   $.fn.visible = function(partial) {
     
@@ -84,12 +84,18 @@ $(window).scroll(function(event) {
   $(".container").children().not(".stay").each(function(i, el) {
     var el = $(el);
     if (el.visible(true)) {
-      el.addClass("come-in"); 
+      el.addClass("come-in-bottom"); 
     } 
   });
-  
+  $(".igTilesContainer").children().not(".stay").each(function(i, el) {
+    var el = $(el);
+    if (el.visible(true)) {
+      el.addClass("come-in-left"); 
+    } 
+  });
+
 });
-*/
+
 
 function resizeIframe(obj) {
   obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
