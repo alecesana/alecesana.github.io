@@ -15,6 +15,56 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css\main.css">
+
+  <script src="https://use.fontawesome.com/09878ab60a.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src=".\js\main.js"></script>
+  <script src="./js/three.min.js"></script>
+  <script src="./js/datgui.js"></script>
+  <script src="./js/stats.js-master/build/stats.min.js"></script>
+  <script src="./js/TrackballControls.js"></script>   
+  <script src="./js/WebGL.js"></script>  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134544683-1"></script>
+  <script src="https://unpkg.com/react/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-134544683-1');
+  </script>
+    
+
+    <script type="x-shader/x-vertex" id="vertexshader">
+
+      attribute float scale;
+      attribute vec3 customColor;
+      varying vec3 vColor;
+    
+      void main() {
+        vColor = customColor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+        gl_Position = projectionMatrix * mvPosition;
+      }
+
+    </script>
+        <!--//orientating all diamonds towards center or mous pointer would be sickkkkk-->
+
+    <script type="x-shader/x-fragment" id="fragmentshader">
+    
+      uniform vec3 color;  
+      varying vec3 vColor;
+      void main() {
+        gl_FragColor = vec4( color * vColor, 1.0 );
+        gl_FragColor = gl_FragColor ;
+        if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
+      }
+    </script>  
+    <!--<script src="./js/threejs2.js"></script> -->
 </head>
 
 <body>  
@@ -29,6 +79,7 @@
         <div id="symmetryContainer1"></div>        
       </div>
     </div>
+    <script src="./js/threejs1.js"></script> 
 
   <header class="main-header" >     
       <div class="inLineHeaderContainer"> 
@@ -44,7 +95,7 @@
             <ul class= "main-nav" >    
                 <li><a href="index.html#threejsBiggercontainer1" class = "scroll" >web</a></li>
                     <li><a href="#Interactivity"  class = "scroll">interactivity</a></li>
-                    <li><a href="automation.html" >automation</a></li>
+                    <!--<li><a href="automation.html" >automation</a></li>-->
                     <li><a href = "cyclingcolors.html">code</a></li> 
                     <li><a href = "#about" class= "scroll" >about</a></li>
                     <li><a href="#Contact" class = "scroll">contact</a></li> 
@@ -234,56 +285,6 @@
 
   </footer>
 
-  <script src="https://use.fontawesome.com/09878ab60a.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script type="text/javascript" src=".\js\main.js"></script>
-  <script src="./js/three.min.js"></script>
-  <script src="./js/datgui.js"></script>
-  <script src="./js/stats.js-master/build/stats.min.js"></script>
-  <script src="./js/TrackballControls.js"></script>   
-  <script src="./js/WebGL.js"></script>  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-134544683-1"></script>
-  <script src="https://unpkg.com/react/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-134544683-1');
-  </script>
-    
-
-    <script type="x-shader/x-vertex" id="vertexshader">
-
-      attribute float scale;
-      attribute vec3 customColor;
-      varying vec3 vColor;
-    
-      void main() {
-        vColor = customColor;
-        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-        gl_PointSize = scale * ( 300.0 / - mvPosition.z );
-        gl_Position = projectionMatrix * mvPosition;
-      }
-
-    </script>
-        <!--//orientating all diamonds towards center or mous pointer would be sickkkkk-->
-
-    <script type="x-shader/x-fragment" id="fragmentshader">
-    
-      uniform vec3 color;  
-      varying vec3 vColor;
-      void main() {
-        gl_FragColor = vec4( color * vColor, 1.0 );
-        gl_FragColor = gl_FragColor ;
-        if ( length( gl_PointCoord - vec2( 0.5, 0.5 ) ) > 0.475 ) discard;
-      }
-    </script>  
-    <script src="./js/threejs1.js"></script> 
-    <!--<script src="./js/threejs2.js"></script> -->
 
 </body>
 </html>

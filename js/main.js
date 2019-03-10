@@ -6,7 +6,7 @@ function navIconActivate(){
   $('.top').toggleClass('activeT')
   $('.bottom').toggleClass('activeB')
   $('.middle').toggleClass('activeM')
-  console.log("click")
+  //console.log("click")
 }
 
 function removeClickFunction(){
@@ -18,7 +18,7 @@ $('.top').toggleClass('activeT')
 $('.bottom').toggleClass('activeB')
 $('.middle').toggleClass('activeM')
 
-console.log('classremoved')
+//console.log('classremoved')
 }
 }
 
@@ -26,12 +26,12 @@ var mqList = window.matchMedia( "(min-width: 870px)" );
 mqList.addListener(mediaChange);
 
 function mediaChange(mqList){
-  console.log("matches")
+  //console.log("matches")
 if (mqList.matches) {
  removeClickFunction();
  
  } else {
- console.log("small window");
+ //console.log("small window");
  $( '#navIcon').off().click(navIconActivate)
  $( ".main-nav a" ).off().click(navIconActivate) 
 
@@ -83,10 +83,12 @@ $(window).scroll(function(event) {
   
   $(".container").children().not(".stay").each(function(i, el) {
     var el = $(el);
+    
     if (el.visible(true)) {
-      el.addClass("come-in-bottom"); 
+      el.addClass("come-in-left"); 
     } 
   });
+  
   $(".igTilesContainer").children().not(".stay").each(function(i, el) {
     var el = $(el);
     if (el.visible(true)) {
@@ -97,9 +99,6 @@ $(window).scroll(function(event) {
 });
 
 
-function resizeIframe(obj) {
-  obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
-}
   
  mediaChange(mqList);  
  

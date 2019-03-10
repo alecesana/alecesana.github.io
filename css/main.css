@@ -139,15 +139,22 @@ a{
 
  
  .bar {
-   display: block;
-   height: 5px;
-   width: 45px;
-   background-color:whitesmoke;   
-   margin: 7px auto;
+
+    display: block;
+    height: 3px;
+    width: 45px;
+    background-color:whitesmoke;   
+    margin: 9px auto;
+  
+   -webkit-transition: all .7s ease;
+   -moz-transition: all .7s ease;
+   -ms-transition: all .7s ease;
+   -o-transition: all .7s ease;
+   transition: all .7s ease;
  }
  
  .active {
-    height:200px;   /*todo: make it number of elements in  using js*/  
+    height:170px;   /*todo: make it number of elements in  using js*/  
     }
 
 
@@ -168,17 +175,8 @@ a{
   transition: all .7s ease;
  }
  
- .middle {
-   margin: 0 auto;
- }
  
- .bar {
-   -webkit-transition: all .7s ease;
-   -moz-transition: all .7s ease;
-   -ms-transition: all .7s ease;
-   -o-transition: all .7s ease;
-   transition: all .7s ease;
- }
+
  
  .activeT {
    -webkit-transform: translateY(12px) rotateZ(45deg);
@@ -246,7 +244,7 @@ a{
 
 .section-header{
     width:30%;
-    min-width: 250px;;
+    min-width: 270px;
     font-size: 2em;
     text-align:left;
     padding:0 0 .5% 2%;
@@ -258,7 +256,9 @@ a{
     
 }
 
-
+.stay{
+    text-decoration: none;
+}
 .section-list-long    {  
     list-style-type: none;
     padding:0.3em 0 0.3em 0;
@@ -278,7 +278,7 @@ a{
 }
 
 .section-list li{
-    font-size:1.3em;
+    font-size:1.1em;
     padding:2px 0 2px 0;
     font-weight:bolder;
     
@@ -569,9 +569,10 @@ iframe{
     height: 100%;
    
 }
-
-.come-in-bottom {
+.offset-bottom{
     transform: translateY(18vh);
+}
+.come-in-bottom {
     animation: come-in-bottom 0.8s ease forwards;
   }
   .come-in-bottom:nth-child(odd) {
@@ -833,6 +834,10 @@ iframe{
   
     .checkboxListItem{
         width:30%;
+    }
+
+    .stay{
+        text-decoration: none;
     }
     
     
