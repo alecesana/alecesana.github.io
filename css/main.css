@@ -246,9 +246,10 @@ a{
 
 .section-header{
     width:30%;
+    min-width: 250px;;
     font-size: 2em;
     text-align:left;
-    padding-left:2%;
+    padding:0 0 .5% 2%;
     font-weight: lighter;
     color:whitesmoke;
     text-align: left;
