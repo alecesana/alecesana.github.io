@@ -1,0 +1,36 @@
+.linesGroup{
+  display: inline-block;
+  width: 100vw;
+  text-align: center;
+  height:100vh;
+  cursor: pointer;
+  display: inline-block;   
+  margin:0;
+  padding:0;
+ -webkit-transition: all .7s ease;
+ -moz-transition: all .7s ease;
+ -ms-transition: all .7s ease;
+ -o-transition: all .7s ease;
+ transition: all .7s ease;
+}
+
+.groupsRow{
+  width:100vw;
+  display:flex;
+  align-content:left;
+}
+
+
+
+.bar {
+  display: flex;
+  height: 2px;
+  background-color:black;   
+  margin:  5px;
+  -webkit-transition: all .7s ease;
+  -moz-transition: all .7s ease;
+  -ms-transition: all .7s ease;
+  -o-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
